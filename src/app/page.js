@@ -1,103 +1,100 @@
-import Image from "next/image";
+"use client";
+import { useState, useEffect } from "react";
+import Head from "next/head";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [daysLeft, setDaysLeft] = useState(0);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  useEffect(() => {
+    const targetDate = new Date("2026-01-27");
+    const today = new Date();
+    const diffTime = targetDate - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    setDaysLeft(diffDays);
+  }, []);
+
+  return (
+    <>
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;500;600;700&family=Mukti:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+      <div className="min-h-screen bg-gradient-to-b from-white via-orange-50 to-yellow-50">
+        {/* Header */}
+        <header className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white py-6 shadow-lg">
+          <div className="container mx-auto text-center">
+            <h1
+              className="text-3xl md:text-4xl font-bold tracking-wide"
+              style={{
+                fontFamily: "Noto Serif Gujarati, serif",
+                letterSpacing: "1px",
+                textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
+                background: "linear-gradient(45deg, #fff, #fef3c7)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                filter: "drop-shadow(1px 1px 2px rgba(0,0,0,0.5))"
+              }}
+            >
+              ☸️ હિમતનગર મુમુક્ષુ મંડળ ☸️
+            </h1>
+            <p className="text-lg mt-2 opacity-90">
+              Himatnagar Mumukshu Mandal
+            </p>
+          </div>
+        </header>
+
+        {/* Main Content */}
+        <main className="flex items-center justify-center py-16 px-4">
+          <div className="text-center max-w-2xl">
+            <div className="bg-white rounded-2xl shadow-2xl border-4 border-orange-200 p-8 md:p-12">
+              {/* <div className="mb-8">
+              <div className="text-6xl mb-4">🙏</div>
+              <h2 className="text-2xl md:text-3xl font-bold text-orange-700 mb-2">
+                આગામી પવિત્ર દિવસ
+              </h2>
+              <p className="text-lg text-gray-600">January 27, 2026</p>
+            </div> */}
+
+              <div className="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl p-8 border-2 border-orange-300">
+                <div className="text-8xl md:text-9xl font-bold text-orange-600 mb-4">
+                  {daysLeft}
+                </div>
+                <div
+                  className="text-2xl md:text-3xl font-semibold text-orange-700"
+                  style={{
+                    fontFamily: "Noto Serif Gujarati, serif",
+                    letterSpacing: "0.8px",
+                    textShadow: "1px 1px 3px rgba(0,0,0,0.2)",
+                    fontWeight: "600"
+                  }}
+                >
+                  {daysLeft === 1 ? "દિવસ બાકી" : "દિવસો બાકી"}
+                </div>
+                <div className="text-lg text-gray-600 mt-2">
+                  {daysLeft === 1 ? "day remaining" : "days remaining"}
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        {/* Footer */}
+        <footer className="text-center py-8 text-orange-700">
+          <p
+            className="text-lg font-medium"
+            style={{
+              fontFamily: "Noto Serif Gujarati, serif",
+              letterSpacing: "0.5px",
+              textShadow: "1px 1px 2px rgba(0,0,0,0.3)",
+              fontSize: "1.2rem"
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+            ☸️ જય જિનેન્દ્ર ☸️
+          </p>
+        </footer>
+      </div>
+    </>
   );
 }
