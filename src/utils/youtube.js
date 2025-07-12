@@ -1,5 +1,5 @@
-const API_KEY = "AIzaSyD8s2lsE0g74NWoBVFkyN7NMbmPzcSxS2M";
-const CHANNEL_ID = "UCqE3OcU5RokQW45Sgt9uF3A";
+const API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
+const CHANNEL_ID = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
 
 export const checkLiveStream = async () => {
   try {
