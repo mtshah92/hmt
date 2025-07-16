@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Head from "next/head";
+import Link from "next/link";
 import Header from "../components/Header";
 import CountdownTimer from "../components/CountdownTimer";
 import LiveStream from "../components/LiveStream";
@@ -41,12 +42,23 @@ export default function Home() {
       <div className="min-h-screen bg-gradient-to-b from-white via-orange-50 to-yellow-50">
         <Header />
 
+        {/* Image Section */}
+        {/* <section className="py-6 px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <img
+              src="/panchkalyank.jpeg"
+              alt="Shantinath Bhagwan"
+              className="w-full max-w-2xl mx-auto rounded-lg shadow-lg"
+            />
+          </div>
+        </section> */}
+
         {/* Hero Section */}
         <section className="py-12 px-4">
           <div className="max-w-6xl mx-auto text-center">
             <div className="mb-8">
               <div className="flex justify-center items-center gap-4 mb-4 text-2xl md:text-3xl font-bold text-orange-700 mb-3">
-                શ્રી 1008 શાંતિનાથ ભગવાન પંચ કલ્યાણક મહોત્સવ - હિમતનગર
+                શ્રી 1008 શાંતિનાથ ભગવાન પંચ કલ્યાણક મહોત્સવ - હિંમતનગર
               </div>
               <h2
                 className="text-2xl md:text-3xl font-bold text-orange-700 mb-3"
@@ -96,6 +108,18 @@ export default function Home() {
               <div className="w-24 h-1 bg-orange-400 mx-auto rounded"></div>
             </div>
             <ImageCarousel />
+            <div className="text-center mt-8 flex justify-center space-x-4">
+              <Link href="/gallery">
+                <span className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-6 rounded-lg transition-colors">
+                  View Photo Gallery
+                </span>
+              </Link>
+              <Link href="/videos">
+                <span className="inline-block bg-orange-700 hover:bg-orange-800 text-white font-medium py-3 px-6 rounded-lg transition-colors">
+                  View Video Gallery
+                </span>
+              </Link>
+            </div>
           </div>
         </section>
 

@@ -1,0 +1,25 @@
+This is a placeholder file. 
+
+You should replace this with actual images in the following structure:
+
+/gallery/temple-inauguration/thumb.jpg (thumbnail for the collection)
+/gallery/temple-inauguration/img1.jpg
+/gallery/temple-inauguration/img2.jpg
+/gallery/temple-inauguration/img3.jpg
+
+/gallery/puja-ceremony/thumb.jpg (thumbnail for the collection)
+/gallery/puja-ceremony/img1.jpg
+/gallery/puja-ceremony/img2.jpg
+/gallery/puja-ceremony/img3.jpg
+
+/gallery/cultural-events/thumb.jpg (thumbnail for the collection)
+/gallery/cultural-events/img1.jpg
+/gallery/cultural-events/img2.jpg
+/gallery/cultural-events/img3.jpg
+
+/gallery/community-gathering/thumb.jpg (thumbnail for the collection)
+/gallery/community-gathering/img1.jpg
+/gallery/community-gathering/img2.jpg
+/gallery/community-gathering/img3.jpg
+
+For now, the system will use the panchkalyank.jpeg image as a fallback if these images are not found.
