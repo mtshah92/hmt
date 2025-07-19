@@ -45,8 +45,8 @@ const UpcomingStreams = ({ upcomingStreams }) => {
   }
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
-      <h3 className="text-lg font-bold text-blue-700 mb-3 text-center"
+    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 sm:p-4 border border-blue-200">
+      <h3 className="text-base sm:text-lg font-bold text-blue-700 mb-2 sm:mb-3 text-center"
         style={{
           fontFamily: "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
         }}>
@@ -55,8 +55,8 @@ const UpcomingStreams = ({ upcomingStreams }) => {
       
       <div className="divide-y divide-blue-200 bg-white rounded-lg p-2">
         {upcomingStreams.map((stream) => (
-          <div key={stream.videoId} className="py-3 flex items-center hover:bg-blue-50 px-2 rounded">
-            <div className="w-12 h-12 flex-shrink-0 mr-3 overflow-hidden rounded-lg">
+          <div key={stream.videoId} className="py-2 sm:py-3 flex flex-wrap sm:flex-nowrap items-start hover:bg-blue-50 px-2 rounded">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 mr-2 sm:mr-3 overflow-hidden rounded-lg">
               <img 
                 src={stream.thumbnail || `https://img.youtube.com/vi/${stream.videoId}/default.jpg`}
                 alt={stream.title}
@@ -67,14 +67,16 @@ const UpcomingStreams = ({ upcomingStreams }) => {
                 }}
               />
             </div>
-            <div className="flex-1 min-w-0">
-              <h5 className="text-sm font-medium text-gray-900 line-clamp-1">{stream.title}</h5>
-              <p className="text-xs font-semibold bg-yellow-100 text-yellow-800 inline-block px-1.5 py-0.5 rounded mt-1">
-                <span className="mr-1">🕒</span>
-                {formatStreamDate(stream.scheduledStartTime)}
-              </p>
+            <div className="flex-1 min-w-0 mb-1 sm:mb-0">
+              <h5 className="text-xs sm:text-sm font-medium text-gray-900 line-clamp-1">{stream.title}</h5>
+              <div className="flex flex-wrap items-center mt-1">
+                <p className="text-xs font-semibold bg-yellow-100 text-yellow-800 inline-flex items-center px-1.5 py-0.5 rounded">
+                  <span className="mr-1">🕒</span>
+                  {formatStreamDate(stream.scheduledStartTime)}
+                </p>
+              </div>
             </div>
-            <div className="ml-2 bg-blue-100 rounded px-2 py-1 whitespace-nowrap">
+            <div className="w-full sm:w-auto sm:ml-2 mt-1 sm:mt-0 bg-blue-100 rounded px-2 py-1 text-center sm:text-left whitespace-nowrap">
               <span className="text-xs font-medium text-blue-800">
                 In {getTimeRemaining(stream.scheduledStartTime)}
               </span>

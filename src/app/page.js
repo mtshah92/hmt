@@ -80,18 +80,18 @@ export default function Home() {
         {/* Main Content Grid */}
         <main className="py-8 px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-12">
               {/* Live Stream Section */}
-              <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-8">
-                <h3 className="text-xl font-semibold text-center mb-6 text-gray-800">
+              <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl font-semibold text-center mb-4 sm:mb-6 text-gray-800">
                   Live Stream
                 </h3>
                 <LiveStream isLive={isLive} liveStreamId={liveStreamId} />
               </div>
 
               {/* Upcoming Streams Section */}
-              <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-8">
-                <h3 className="text-xl font-semibold text-center mb-6 text-gray-800">
+              <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-4 sm:p-6 md:p-8 mt-6 lg:mt-0">
+                <h3 className="text-lg sm:text-xl font-semibold text-center mb-4 sm:mb-6 text-gray-800">
                   <span className="inline-block mr-2">🗓️</span>
                   Upcoming Streams
                 </h3>
@@ -121,14 +121,14 @@ export default function Home() {
               <div className="w-24 h-1 bg-orange-400 mx-auto rounded"></div>
             </div>
             <ImageCarousel />
-            <div className="text-center mt-8 flex justify-center space-x-4">
+            <div className="text-center mt-8 flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
               <Link href="/gallery">
-                <span className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-6 rounded-lg transition-colors">
+                <span className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 sm:py-3 px-4 sm:px-6 rounded-lg transition-colors w-full sm:w-auto">
                   View Photo Gallery
                 </span>
               </Link>
               <Link href="/videos">
-                <span className="inline-block bg-orange-700 hover:bg-orange-800 text-white font-medium py-3 px-6 rounded-lg transition-colors">
+                <span className="inline-block bg-orange-700 hover:bg-orange-800 text-white font-medium py-2 sm:py-3 px-4 sm:px-6 rounded-lg transition-colors w-full sm:w-auto">
                   View Video Gallery
                 </span>
               </Link>
