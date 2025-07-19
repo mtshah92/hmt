@@ -3,16 +3,19 @@ import { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Header from "../components/Header";
+import AnimatedBanner from "../components/AnimatedBanner";
 import CountdownTimer from "../components/CountdownTimer";
 import LiveStream from "../components/LiveStream";
+import UpcomingStreams from "../components/UpcomingStreams";
 import ImageCarousel from "../components/ImageCarousel";
-import { checkLiveStream } from "../utils/youtube";
+import { checkLiveStream, getUpcomingStreams } from "../utils/youtube";
 import { calculateDaysLeft } from "../utils/dateUtils";
 
 export default function Home() {
   const [daysLeft, setDaysLeft] = useState(0);
   const [liveStreamId, setLiveStreamId] = useState(null);
   const [isLive, setIsLive] = useState(false);
+  const [upcomingStreams, setUpcomingStreams] = useState([]);
 
   useEffect(() => {
     const targetDate = new Date("2026-01-27");
@@ -24,7 +27,13 @@ export default function Home() {
       setLiveStreamId(videoId);
     };
 
+    const fetchUpcomingStreams = async () => {
+      const streams = await getUpcomingStreams();
+      setUpcomingStreams(streams);
+    };
+
     fetchLiveStream();
+    fetchUpcomingStreams();
   }, []);
 
   return (
@@ -39,8 +48,9 @@ export default function Home() {
           rel="stylesheet"
         />
       </Head>
-      <div className="min-h-screen bg-gradient-to-b from-white via-orange-50 to-yellow-50">
+      <div className="min-h-screen bg-gradient-to-b from-white via-orange-50 to-yellow-50 relative">
         <Header />
+        <AnimatedBanner />
 
         {/* Image Section */}
         {/* <section className="py-6 px-4">
@@ -53,24 +63,16 @@ export default function Home() {
           </div>
         </section> */}
 
-        {/* Hero Section */}
-        <section className="py-12 px-4">
-          <div className="max-w-6xl mx-auto text-center">
-            <div className="mb-8">
-              <div className="flex justify-center items-center gap-4 mb-4 text-2xl md:text-3xl font-bold text-orange-700 mb-3">
-                શ્રી 1008 શાંતિનાથ ભગવાન પંચ કલ્યાણક મહોત્સવ - હિંમતનગર
-              </div>
-              <h2
-                className="text-2xl md:text-3xl font-bold text-orange-700 mb-3"
-                style={{
-                  fontFamily:
-                    "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
-                }}
-              >
-                મહોત્સવ શુભારંભ
-              </h2>
-              <p className="text-lg text-gray-600 mb-2">January 27, 2026</p>
-              <div className="w-24 h-1 bg-orange-400 mx-auto rounded"></div>
+        {/* Hero Section - Removed as AnimatedBanner replaces it */}
+
+        {/* Countdown Section */}
+        <section className="py-8 px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-8">
+              <h3 className="text-xl font-semibold text-center mb-6 text-gray-800">
+                Pratistha Mahotsav Countdown
+              </h3>
+              <CountdownTimer daysLeft={daysLeft} />
             </div>
           </div>
         </section>
@@ -79,20 +81,31 @@ export default function Home() {
         <main className="py-8 px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-8 mb-12">
-              {/* Countdown Section */}
-              <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-8">
-                <h3 className="text-xl font-semibold text-center mb-6 text-gray-800">
-                  Event Countdown
-                </h3>
-                <CountdownTimer daysLeft={daysLeft} />
-              </div>
-
               {/* Live Stream Section */}
               <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-8">
                 <h3 className="text-xl font-semibold text-center mb-6 text-gray-800">
                   Live Stream
                 </h3>
                 <LiveStream isLive={isLive} liveStreamId={liveStreamId} />
+              </div>
+
+              {/* Upcoming Streams Section */}
+              <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-8">
+                <h3 className="text-xl font-semibold text-center mb-6 text-gray-800">
+                  <span className="inline-block mr-2">🗓️</span>
+                  Upcoming Streams
+                </h3>
+                <UpcomingStreams upcomingStreams={upcomingStreams} />
+
+                {upcomingStreams.length > 0 && (
+                  <div className="mt-4 text-center">
+                    <Link href="/videos">
+                      <span className="inline-block text-sm text-blue-600 hover:text-blue-800 hover:underline">
+                        View all videos →
+                      </span>
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </div>
