@@ -56,14 +56,14 @@ const AnimatedBanner = () => {
         />
 
         {/* Temple silhouette */}
-        <div
+        {/* <div
           className="absolute bottom-0 left-0 right-0 h-32 bg-[url('/temple-silhouette.svg')] bg-repeat-x bg-bottom"
           style={{
             transform: `translateY(${calculateParallax(-0.15)}px)`,
             backgroundSize: "contain",
             opacity: 0.7,
           }}
-        />
+        /> */}
       </div>
 
       {/* Content */}

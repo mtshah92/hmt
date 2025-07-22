@@ -9,18 +9,14 @@ import LiveStream from "../components/LiveStream";
 import UpcomingStreams from "../components/UpcomingStreams";
 import ImageCarousel from "../components/ImageCarousel";
 import { checkLiveStream, getUpcomingStreams } from "../utils/youtube";
-import { calculateDaysLeft } from "../utils/dateUtils";
 
 export default function Home() {
-  const [daysLeft, setDaysLeft] = useState(0);
   const [liveStreamId, setLiveStreamId] = useState(null);
   const [isLive, setIsLive] = useState(false);
   const [upcomingStreams, setUpcomingStreams] = useState([]);
+  const targetDate = new Date("2026-01-27T00:00:00");
 
   useEffect(() => {
-    const targetDate = new Date("2026-01-27");
-    setDaysLeft(calculateDaysLeft(targetDate));
-
     const fetchLiveStream = async () => {
       const { isLive, videoId } = await checkLiveStream();
       setIsLive(isLive);
@@ -66,21 +62,21 @@ export default function Home() {
         {/* Hero Section - Removed as AnimatedBanner replaces it */}
 
         {/* Countdown Section */}
-        <section className="py-8 px-4">
+        <section className="py-6 sm:py-8 px-3 sm:px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-8">
-              <h3 className="text-xl font-semibold text-center mb-6 text-gray-800">
+            <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-4 sm:p-6 md:p-8">
+              <h3 className="text-lg sm:text-xl font-semibold text-center mb-4 sm:mb-6 text-gray-800">
                 Pratistha Mahotsav Countdown
               </h3>
-              <CountdownTimer daysLeft={daysLeft} />
+              <CountdownTimer targetDate={targetDate} />
             </div>
           </div>
         </section>
 
         {/* Main Content Grid */}
-        <main className="py-8 px-4">
+        <main className="py-6 px-3 sm:py-8 sm:px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-12">
+            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 md:gap-8 mb-8 sm:mb-12">
               {/* Live Stream Section */}
               <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-4 sm:p-6 md:p-8">
                 <h3 className="text-lg sm:text-xl font-semibold text-center mb-4 sm:mb-6 text-gray-800">

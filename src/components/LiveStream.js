@@ -1,6 +1,6 @@
 const LiveStream = ({ isLive, liveStreamId }) => {
   return (
-    <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-lg p-3 sm:p-4 border border-red-300">
+    <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-lg p-3 sm:p-4 border border-red-300 overflow-hidden">
       <h3
         className="text-base sm:text-lg font-bold text-red-700 mb-2 sm:mb-3 text-center"
         style={{
@@ -10,7 +10,7 @@ const LiveStream = ({ isLive, liveStreamId }) => {
       >
         🔴 લાઇવ સ્ટ્રીમ
       </h3>
-      <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+      <div className="relative w-full overflow-hidden" style={{ paddingBottom: '56.25%' }}>
         {isLive ? (
           <iframe
             className="absolute top-0 left-0 w-full h-full rounded"
