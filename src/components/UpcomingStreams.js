@@ -8,6 +8,14 @@ const UpcomingStreams = ({ upcomingStreams }) => {
     const tomorrow = new Date(today);
     tomorrow.setDate(tomorrow.getDate() + 1);
     
+    // Check if the stream is today
+    if (streamDate.getDate() === today.getDate() && 
+        streamDate.getMonth() === today.getMonth() && 
+        streamDate.getFullYear() === today.getFullYear()) {
+      const options = { hour: '2-digit', minute: '2-digit' };
+      return `Today, ${streamDate.toLocaleTimeString(undefined, options)}`;
+    }
+    
     // Check if the stream is tomorrow
     if (streamDate.getDate() === tomorrow.getDate() && 
         streamDate.getMonth() === tomorrow.getMonth() && 
