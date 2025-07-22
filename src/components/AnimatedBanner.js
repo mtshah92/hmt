@@ -60,9 +60,35 @@ const AnimatedBanner = () => {
   };
 
   return (
-    <section ref={bannerRef} className="relative h-[450px] overflow-hidden">
-      {/* Creative split view effect */}
-      <div className="absolute inset-0 flex z-10">
+    <section ref={bannerRef} className="relative h-[350px] md:h-[450px] overflow-hidden">
+      {/* Mobile view - single image with crossfade */}
+      <div className="md:hidden absolute inset-0 z-10">
+        {images.map((src, index) => (
+          <div 
+            key={src}
+            className="absolute inset-0 transition-opacity duration-1500 ease-in-out"
+            style={{
+              opacity: activeImage === index ? 1 : 0,
+            }}
+          >
+            <Image 
+              src={src} 
+              alt={index === 0 ? "Songadh Pratikruti" : "HMT Mandir"}
+              fill
+              style={{
+                objectFit: "cover",
+                objectPosition: index === 0 ? "center" : "top center",
+                transform: `scale(${index === 0 ? 1.1 : 1.3}) translateY(${index === 1 ? -20 : 0}px)`,
+              }}
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+          </div>
+        ))}
+      </div>
+      
+      {/* Desktop view - split view effect */}
+      <div className="hidden md:flex absolute inset-0 z-10">
         <div className="w-1/2 h-full relative overflow-hidden">
           <div className="absolute inset-0 transition-transform duration-1000 ease-out">
             <Image
@@ -90,7 +116,7 @@ const AnimatedBanner = () => {
               fill
               style={{
                 objectFit: "cover",
-                objectPosition: "center right",
+                objectPosition: "center top",
                 transform: `scale(1.3) translate(${
                   calculateMouseParallax(15, 0).x
                 }px, ${calculateParallax(0.05) - 30}px)`,
@@ -107,14 +133,14 @@ const AnimatedBanner = () => {
 
       {/* Decorative elements */}
       <div className="absolute inset-0 z-20">
-        {/* Animated lotus flowers */}
-        <div className="absolute top-[15%] left-[15%] w-16 h-16 opacity-60">
+        {/* Animated lotus flowers - hidden on small mobile */}
+        <div className="hidden sm:block absolute top-[15%] left-[15%] w-12 sm:w-16 h-12 sm:h-16 opacity-60">
           <div
             className="lotus-flower"
             style={{ animation: "float 8s ease-in-out infinite" }}
           ></div>
         </div>
-        <div className="absolute bottom-[20%] right-[15%] w-12 h-12 opacity-50">
+        <div className="hidden sm:block absolute bottom-[20%] right-[15%] w-10 sm:w-12 h-10 sm:h-12 opacity-50">
           <div
             className="lotus-flower"
             style={{ animation: "float 6s ease-in-out infinite 1s" }}
@@ -136,7 +162,7 @@ const AnimatedBanner = () => {
           }}
         >
           <h2
-            className="text-3xl md:text-5xl font-bold mb-4"
+            className="text-2xl sm:text-3xl md:text-5xl font-bold mb-2 md:mb-4"
             style={{
               textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
               fontFamily:
@@ -147,13 +173,25 @@ const AnimatedBanner = () => {
           </h2>
 
           <p
-            className="text-lg md:text-xl text-center max-w-2xl mx-auto transition-all duration-1000 delay-300"
+            className="text-sm sm:text-lg md:text-xl text-center max-w-2xl mx-auto transition-all duration-1000 delay-300"
             style={{
               textShadow: "1px 1px 2px rgba(0,0,0,0.5)",
             }}
           >
             Join us for this auspicious celebration honoring Shantinath Bhagwan
           </p>
+          
+          {/* Image indicators for mobile */}
+          <div className="flex gap-2 mt-4 md:hidden justify-center">
+            {images.map((_, index) => (
+              <button 
+                key={index}
+                className={`w-2 h-2 rounded-full transition-all ${activeImage === index ? "bg-white scale-110" : "bg-white/50"}`}
+                onClick={() => setActiveImage(index)}
+                aria-label={`View image ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
