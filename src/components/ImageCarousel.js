@@ -35,7 +35,7 @@ const ImageCarousel = () => {
                 className={`group cursor-pointer transform transition-all duration-700 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 } ${
-                  index === 4 ? 'col-span-2 sm:col-span-1 max-w-xs sm:max-w-none mx-auto sm:mx-0' : ''
+                  index === 4 ? 'col-span-2 sm:col-span-1 mx-auto sm:mx-0' : ''
                 }`}
                 style={{ animationDelay: `${index * 200}ms` }}
               >
