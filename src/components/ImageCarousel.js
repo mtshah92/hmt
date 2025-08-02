@@ -16,7 +16,7 @@ const ImageCarousel = () => {
   ];
 
   return (
-    <section className="py-8 px-4 relative overflow-hidden">
+    <section className="py-6 md:py-8 px-3 md:px-4 relative overflow-hidden">
       {/* Magical background rays */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-0 left-1/4 w-1 h-full bg-gradient-to-b from-yellow-400 via-orange-400 to-transparent transform rotate-12 animate-pulse" style={{animationDelay: '0s'}} />
@@ -27,17 +27,19 @@ const ImageCarousel = () => {
 
 
       <div className="max-w-4xl mx-auto relative z-10">
-        <div className="bg-gradient-to-br from-white via-orange-50/50 to-yellow-50/50 rounded-xl shadow-2xl border border-orange-200/50 p-6 backdrop-blur-sm">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="bg-gradient-to-br from-white via-orange-50/50 to-yellow-50/50 rounded-xl shadow-2xl border border-orange-200/50 p-4 md:p-6 backdrop-blur-sm">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
             {kalyanaks.map((kalyanak, index) => (
               <div 
                 key={index} 
                 className={`group cursor-pointer transform transition-all duration-700 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                } ${
+                  index === 4 ? 'col-span-2 sm:col-span-1 max-w-xs sm:max-w-none mx-auto sm:mx-0' : ''
                 }`}
                 style={{ animationDelay: `${index * 200}ms` }}
               >
-                <div className="relative h-32 md:h-40 rounded-lg overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-500">
+                <div className="relative h-28 sm:h-32 md:h-40 rounded-lg overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-500">
                   {/* Magical glow effect */}
                   <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-400 rounded-lg opacity-0 group-hover:opacity-75 blur-sm transition-opacity duration-500" />
                   
@@ -56,9 +58,9 @@ const ImageCarousel = () => {
                   </div>
                 </div>
                 
-                <div className="text-center mt-3">
+                <div className="text-center mt-2 md:mt-3">
                   <p 
-                    className="text-sm font-bold text-orange-800 group-hover:text-orange-600 transition-all duration-300 group-hover:scale-105"
+                    className="text-xs sm:text-sm font-bold text-orange-800 group-hover:text-orange-600 transition-all duration-300 group-hover:scale-105 leading-tight"
                     style={{
                       fontFamily: "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
                       textShadow: "1px 1px 2px rgba(0,0,0,0.1)"
