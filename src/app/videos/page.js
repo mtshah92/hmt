@@ -14,14 +14,13 @@ export default function Videos() {
       description: "",
       youtubeId: "yPgZhsTTXi8", // Replace with actual YouTube video ID
       thumbnail: "https://img.youtube.com/vi/yPgZhsTTXi8/maxresdefault.jpg",
-      date: "",
     },
     {
       id: "video2",
       title: "मंगल गीत - श्री सोनगढ़ प्रतिकृति शिलान्यास महोत्सव",
       description: "",
       youtubeId: "iv97P4YV40E", // Replace with actual YouTube video ID
-      thumbnail: "https://img.youtube.com/vi/iv97P4YV40E/maxresdefault.jpg",
+      thumbnail: "/songadh_pratikruti.jpg",
       date: "",
     },
     {
@@ -84,9 +83,6 @@ export default function Videos() {
 
             <div className="mt-6">
               <p className="text-gray-600 mb-2">{selectedVideo.description}</p>
-              <p className="text-sm text-gray-500">
-                Posted on: {selectedVideo.date}
-              </p>
             </div>
           </div>
         ) : (
@@ -118,9 +114,6 @@ export default function Videos() {
                     {video.title}
                   </h3>
                   <p className="text-gray-600 text-sm">{video.description}</p>
-                  <p className="text-sm text-gray-500 mt-2">
-                    Posted on: {video.date}
-                  </p>
                 </div>
               </div>
             ))}

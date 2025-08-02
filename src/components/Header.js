@@ -44,14 +44,14 @@ const Header = () => {
                 Home
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 href="/gallery"
                 className="text-white hover:text-yellow-200 transition-colors"
               >
                 Photos
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
                 href="/videos"

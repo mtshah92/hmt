@@ -1,108 +1,77 @@
-import { useEffect } from 'react';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 const ImageCarousel = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
-    let currentSlide = 0;
-    const totalSlides = 3;
-    
-    window.nextSlide = () => {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      updateCarousel();
-    };
-    
-    window.prevSlide = () => {
-      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-      updateCarousel();
-    };
-    
-    window.goToSlide = (index) => {
-      currentSlide = index;
-      updateCarousel();
-    };
-    
-    const updateCarousel = () => {
-      const carousel = document.getElementById("carousel");
-      if (carousel) {
-        carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-        
-        const dots = document.querySelectorAll(".cursor-pointer");
-        dots.forEach((dot, index) => {
-          dot.className = index === currentSlide 
-            ? "w-3 h-3 bg-orange-500 rounded-full cursor-pointer"
-            : "w-3 h-3 bg-orange-300 rounded-full cursor-pointer";
-        });
-      }
-    };
-    
-    const interval = setInterval(() => {
-      window.nextSlide();
-    }, 3000);
-    
-    return () => clearInterval(interval);
+    setIsVisible(true);
   }, []);
+  const kalyanaks = [
+    { name: "ગર્ભ કલ્યાણક", image: "/Panchkalyanka/garbha__kalyanka.jpg", date: "27 January 2026" },
+    { name: "જન્મ કલ્યાણક", image: "/Panchkalyanka/janma_kalyanka.jpg", date: "28 January 2026" },
+    { name: "તપ કલ્યાણક", image: "/Panchkalyanka/tap_kalyanka.jpg", date: "29 January 2026" },
+    { name: "કેવળ જ્ઞાન કલ્યાણક", image: "/Panchkalyanka/keval_gyan_kalyanka.jpg", date: "30 January 2026" },
+    { name: "મોક્ષ કલ્યાણક", image: "/Panchkalyanka/moksha_kalyanka.jpg", date: "3 February 2026" }
+  ];
 
   return (
-    <section className="py-8 px-4">
-      <div className="max-w-4xl mx-auto">
-        <div className="bg-white rounded-xl shadow-lg border border-orange-200 p-6">
-          <h3
-            className="text-xl font-bold text-orange-700 text-center mb-4"
-            style={{
-              fontFamily: "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
-            }}
-          >
-            ફોટો ગેલેરી
-          </h3>
-          <div className="relative overflow-hidden rounded-lg">
-            <div
-              className="flex transition-transform duration-500 ease-in-out"
-              id="carousel"
-            >
-              <div className="min-w-full bg-gradient-to-br from-orange-100 to-yellow-100 h-64 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-8xl mb-2">🏛️</div>
-                  <p className="text-orange-700 font-medium">મંદિર દર્શન</p>
+    <section className="py-8 px-4 relative overflow-hidden">
+      {/* Magical background rays */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-0 left-1/4 w-1 h-full bg-gradient-to-b from-yellow-400 via-orange-400 to-transparent transform rotate-12 animate-pulse" style={{animationDelay: '0s'}} />
+        <div className="absolute top-0 right-1/4 w-1 h-full bg-gradient-to-b from-orange-400 via-yellow-400 to-transparent transform -rotate-12 animate-pulse" style={{animationDelay: '1s'}} />
+        <div className="absolute top-0 left-1/2 w-1 h-full bg-gradient-to-b from-yellow-300 via-orange-300 to-transparent animate-pulse" style={{animationDelay: '2s'}} />
+      </div>
+
+
+
+      <div className="max-w-4xl mx-auto relative z-10">
+        <div className="bg-gradient-to-br from-white via-orange-50/50 to-yellow-50/50 rounded-xl shadow-2xl border border-orange-200/50 p-6 backdrop-blur-sm">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {kalyanaks.map((kalyanak, index) => (
+              <div 
+                key={index} 
+                className={`group cursor-pointer transform transition-all duration-700 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
+                <div className="relative h-32 md:h-40 rounded-lg overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-500">
+                  {/* Magical glow effect */}
+                  <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-400 rounded-lg opacity-0 group-hover:opacity-75 blur-sm transition-opacity duration-500" />
+                  
+                  <div className="relative bg-white rounded-lg overflow-hidden h-full">
+                    <Image
+                      src={kalyanak.image}
+                      alt={kalyanak.name}
+                      fill
+                      style={{ objectFit: "cover" }}
+                      className="group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-orange-400/20" />
+                    
+                    {/* Magical shimmer effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                  </div>
+                </div>
+                
+                <div className="text-center mt-3">
+                  <p 
+                    className="text-sm font-bold text-orange-800 group-hover:text-orange-600 transition-all duration-300 group-hover:scale-105"
+                    style={{
+                      fontFamily: "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
+                      textShadow: "1px 1px 2px rgba(0,0,0,0.1)"
+                    }}
+                  >
+                    {kalyanak.name}
+                  </p>
+                  {/* <p className="text-xs text-orange-600 mt-1">
+                    {kalyanak.date}
+                  </p> */}
                 </div>
               </div>
-              <div className="min-w-full bg-gradient-to-br from-yellow-100 to-orange-100 h-64 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-8xl mb-2">🙏</div>
-                  <p className="text-orange-700 font-medium">પૂજા વિધિ</p>
-                </div>
-              </div>
-              <div className="min-w-full bg-gradient-to-br from-orange-100 to-red-100 h-64 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-8xl mb-2">🎉</div>
-                  <p className="text-orange-700 font-medium">ઉત્સવ</p>
-                </div>
-              </div>
-            </div>
-            <button
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg"
-              onClick={() => window.prevSlide()}
-            >
-              ←
-            </button>
-            <button
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg"
-              onClick={() => window.nextSlide()}
-            >
-              →
-            </button>
-          </div>
-          <div className="flex justify-center mt-4 space-x-2">
-            <div
-              className="w-3 h-3 bg-orange-500 rounded-full cursor-pointer"
-              onClick={() => window.goToSlide(0)}
-            ></div>
-            <div
-              className="w-3 h-3 bg-orange-300 rounded-full cursor-pointer"
-              onClick={() => window.goToSlide(1)}
-            ></div>
-            <div
-              className="w-3 h-3 bg-orange-300 rounded-full cursor-pointer"
-              onClick={() => window.goToSlide(2)}
-            ></div>
+            ))}
           </div>
         </div>
       </div>
@@ -111,3 +80,21 @@ const ImageCarousel = () => {
 };
 
 export default ImageCarousel;
+
+// Add custom CSS for additional animations
+const styles = `
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+`;
+
+if (typeof document !== 'undefined') {
+  const styleSheet = document.createElement('style');
+  styleSheet.textContent = styles;
+  document.head.appendChild(styleSheet);
+}

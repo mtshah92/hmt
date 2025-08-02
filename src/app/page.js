@@ -110,21 +110,10 @@ export default function Home() {
         {/* Gallery Section */}
         <section className="py-12 bg-orange-25">
           <div className="max-w-6xl mx-auto px-4">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-                Photo Gallery
-              </h2>
-              <div className="w-24 h-1 bg-orange-400 mx-auto rounded"></div>
-            </div>
             <ImageCarousel />
-            <div className="text-center mt-8 flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
-              <Link href="/gallery">
-                <span className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 sm:py-3 px-4 sm:px-6 rounded-lg transition-colors w-full sm:w-auto">
-                  View Photo Gallery
-                </span>
-              </Link>
+            <div className="text-center mt-8">
               <Link href="/videos">
-                <span className="inline-block bg-orange-700 hover:bg-orange-800 text-white font-medium py-2 sm:py-3 px-4 sm:px-6 rounded-lg transition-colors w-full sm:w-auto">
+                <span className="inline-block bg-orange-700 hover:bg-orange-800 text-white font-medium py-2 sm:py-3 px-4 sm:px-6 rounded-lg transition-colors">
                   View Video Gallery
                 </span>
               </Link>
