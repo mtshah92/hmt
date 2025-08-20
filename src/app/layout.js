@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Himatnagar Mumumukshu Mandal",
-  description: "Meet Shah",
+  author: "Meet Shah",
 };
 
 export default function RootLayout({ children }) {

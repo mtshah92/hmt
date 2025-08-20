@@ -2,44 +2,10 @@
 import { useState } from "react";
 import Header from "../../components/Header";
 import VideoPlayer from "../../components/VideoPlayer";
+import { VIDEOS_DATA } from "../../constants/videos";
 
 export default function Videos() {
   const [selectedVideo, setSelectedVideo] = useState(null);
-
-  // Sample videos data - replace with your actual YouTube videos
-  const videos = [
-    {
-      id: "video1",
-      title: "सोनगढ़ प्रतिकृति का भव्य शिलान्यास उत्सव- पत्रिका लेखन समारंभ",
-      description: "",
-      youtubeId: "yPgZhsTTXi8", // Replace with actual YouTube video ID
-      thumbnail: "https://img.youtube.com/vi/yPgZhsTTXi8/maxresdefault.jpg",
-    },
-    {
-      id: "video2",
-      title: "मंगल गीत - श्री सोनगढ़ प्रतिकृति शिलान्यास महोत्सव",
-      description: "",
-      youtubeId: "iv97P4YV40E", // Replace with actual YouTube video ID
-      thumbnail: "/songadh_pratikruti.jpg",
-      date: "",
-    },
-    {
-      id: "video3",
-      title: "श्री सोनगढ़ प्रतिकृति शिलान्यास महोत्सव पूर्व बेला",
-      description: "",
-      youtubeId: "4f2DSxV10RM", // Replace with actual YouTube video ID
-      thumbnail: "https://img.youtube.com/vi/4f2DSxV10RM/maxresdefault.jpg",
-      date: "",
-    },
-    {
-      id: "video4",
-      title: "श्री सोनगढ़ प्रतिकृति शिलान्यास महोत्सव",
-      description: "",
-      youtubeId: "BHvaM-bCmyI", // Replace with actual YouTube video ID
-      thumbnail: "https://img.youtube.com/vi/BHvaM-bCmyI/maxresdefault.jpg",
-      date: "",
-    },
-  ];
 
   // Handle video selection
   const handleVideoClick = (video) => {
@@ -87,7 +53,7 @@ export default function Videos() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {videos.map((video) => (
+            {VIDEOS_DATA.map((video) => (
               <div
                 key={video.id}
                 className="bg-white rounded-xl shadow-lg border border-orange-200 overflow-hidden cursor-pointer hover:shadow-xl transition-shadow"

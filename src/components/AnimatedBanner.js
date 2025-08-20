@@ -2,6 +2,210 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 
+// const AnimatedBanner = () => {
+//   return (
+//     <section className="w-full bg-gradient-to-r from-yellow-50 to-white py-8">
+//       <div className="max-w-7xl mx-auto flex flex-col items-center">
+//         {/* Top Title */}
+//         <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-6 text-center">
+//           શ્રી 1008 શાંતિનાથ ભગવાન પંચ કલ્યાણક મહોત્સવ
+//         </h2>
+
+//         {/* Three Images Row like emblem */}
+//         <div className="flex items-end justify-center gap-8">
+//           {/* Left image */}
+//           <Image
+//             src="/banner/songadh_pratikruti.png"
+//             alt="Songadh Pratikruti"
+//             width={500}
+//             height={250}
+//             className="object-contain"
+//             priority
+//           />
+
+//           {/* Middle image (pillar) */}
+//           <Image
+//             src="/banner/manstambh.png"
+//             alt="Manstambh"
+//             width={120}
+//             height={300}
+//             className="object-contain"
+//             priority
+//           />
+
+//           {/* Right image */}
+//           <Image
+//             src="/banner/hmt_mandir.png"
+//             alt="HMT Mandir"
+//             width={200}
+//             height={250}
+//             className="object-contain"
+//             priority
+//           />
+//         </div>
+
+//         {/* Bottom Event Info */}
+//         <p className="mt-6 text-lg sm:text-xl text-center font-semibold text-red-700">
+//           મહાવીરનગર - હિમતનગર - ગુજરાત <br />
+//           ૨૭-૦૧-૨૦૨૬ થી ૦૧-૦૨-૨૦૨૬
+//         </p>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default AnimatedBanner;
+
+// /const AnimatedBanner = () => {
+//   const [scrollY, setScrollY] = useState(0);
+//   const [isVisible, setIsVisible] = useState(false);
+//   const [activeImage, setActiveImage] = useState(0);
+//   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+//   const bannerRef = useRef(null);
+
+//   // Your three images
+//   const images = [
+//     "/banner/songadh_pratikruti.png",
+//     "/banner/manstambh.png",
+//     "/banner/hmt_mandir.png",
+//   ];
+
+//   useEffect(() => {
+//     setIsVisible(true);
+
+//     const handleScroll = () => setScrollY(window.scrollY);
+
+//     const handleMouseMove = (e) => {
+//       if (!bannerRef.current) return;
+//       const rect = bannerRef.current.getBoundingClientRect();
+//       setMousePosition({
+//         x: (e.clientX - rect.left) / rect.width - 0.5,
+//         y: (e.clientY - rect.top) / rect.height - 0.5,
+//       });
+//     };
+
+//     // Auto-slide images every 6 seconds (mobile)
+//     const imageInterval = setInterval(() => {
+//       setActiveImage((prev) => (prev + 1) % images.length);
+//     }, 6000);
+
+//     window.addEventListener("scroll", handleScroll);
+//     if (bannerRef.current) {
+//       bannerRef.current.addEventListener("mousemove", handleMouseMove);
+//     }
+
+//     return () => {
+//       window.removeEventListener("scroll", handleScroll);
+//       if (bannerRef.current) {
+//         bannerRef.current.removeEventListener("mousemove", handleMouseMove);
+//       }
+//       clearInterval(imageInterval);
+//     };
+//   }, []);
+
+//   const calculateParallax = (factor) => scrollY * factor;
+
+//   const calculateMouseParallax = (factorX, factorY) => ({
+//     x: mousePosition.x * factorX,
+//     y: mousePosition.y * factorY,
+//   });
+
+//   return (
+//     <section
+//       ref={bannerRef}
+//       className="relative h-[350px] md:h-[450px] overflow-hidden"
+//     >
+//       {/* Mobile: Crossfade slideshow */}
+//       <div className="md:hidden absolute inset-0 z-10">
+//         {images.map((src, index) => (
+//           <div
+//             key={src}
+//             className="absolute inset-0 transition-opacity duration-1500 ease-in-out"
+//             style={{
+//               opacity: activeImage === index ? 1 : 0,
+//             }}
+//           >
+//             <Image
+//               src={src}
+//               alt={`Banner image ${index + 1}`}
+//               fill
+//               style={{
+//                 objectFit: "cover",
+//                 transform: `scale(1.1) translateY(${index === 1 ? -20 : 0}px)`,
+//               }}
+//               priority
+//             />
+//             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+//           </div>
+//         ))}
+//       </div>
+
+//       {/* Desktop: 3 split panels */}
+//       <div className="hidden md:grid grid-cols-3 absolute inset-0 z-10">
+//         {images.map((src, index) => (
+//           <div key={index} className="relative overflow-hidden">
+//             <Image
+//               src={src}
+//               alt={`Banner image ${index + 1}`}
+//               fill
+//               style={{
+//                 objectFit: "cover",
+//                 transform: `scale(1.1) translate(${
+//                   calculateMouseParallax(15, 0).x
+//                 }px, ${calculateParallax(0.05)}px)`,
+//               }}
+//               className={
+//                 index === 1
+//                   ? "rounded-full shadow-2xl border-4 border-yellow-400"
+//                   : "rounded-2xl shadow-lg"
+//               }
+//               priority
+//             />
+//           </div>
+//         ))}
+//       </div>
+
+//       {/* Overlay */}
+//       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent z-20" />
+
+//       {/* Center text */}
+//       <div className="relative h-full flex flex-col items-center justify-center text-white px-4 z-30">
+//         <div
+//           className={`text-center transition-all duration-1000 ${
+//             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+//           }`}
+//           style={{
+//             transform: `translateY(${calculateParallax(-0.2)}px)`,
+//           }}
+//         >
+//           <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-2 md:mb-4">
+//             શ્રી 1008 શાંતિનાથ ભગવાન પંચ કલ્યાણક મહોત્સવ
+//           </h2>
+//           <p className="text-sm sm:text-lg md:text-xl max-w-2xl mx-auto">
+//             Join us for this auspicious celebration honoring Shantinath Bhagwan
+//           </p>
+
+//           {/* Mobile indicators */}
+//           <div className="flex gap-2 mt-4 md:hidden justify-center">
+//             {images.map((_, index) => (
+//               <button
+//                 key={index}
+//                 className={`w-2 h-2 rounded-full transition-all ${
+//                   activeImage === index ? "bg-white scale-110" : "bg-white/50"
+//                 }`}
+//                 onClick={() => setActiveImage(index)}
+//                 aria-label={`View image ${index + 1}`}
+//               />
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default AnimatedBanner;
+
 const AnimatedBanner = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
@@ -60,25 +264,30 @@ const AnimatedBanner = () => {
   };
 
   return (
-    <section ref={bannerRef} className="relative h-[350px] md:h-[450px] overflow-hidden">
+    <section
+      ref={bannerRef}
+      className="relative h-[350px] md:h-[450px] overflow-hidden"
+    >
       {/* Mobile view - single image with crossfade */}
       <div className="md:hidden absolute inset-0 z-10">
         {images.map((src, index) => (
-          <div 
+          <div
             key={src}
             className="absolute inset-0 transition-opacity duration-1500 ease-in-out"
             style={{
               opacity: activeImage === index ? 1 : 0,
             }}
           >
-            <Image 
-              src={src} 
+            <Image
+              src={src}
               alt={index === 0 ? "Songadh Pratikruti" : "HMT Mandir"}
               fill
               style={{
                 objectFit: "cover",
                 objectPosition: index === 0 ? "center" : "top center",
-                transform: `scale(${index === 0 ? 1.1 : 1.3}) translateY(${index === 1 ? -20 : 0}px)`,
+                transform: `scale(${index === 0 ? 1.1 : 1.3}) translateY(${
+                  index === 1 ? -20 : 0
+                }px)`,
               }}
               priority
             />
@@ -86,7 +295,7 @@ const AnimatedBanner = () => {
           </div>
         ))}
       </div>
-      
+
       {/* Desktop view - split view effect */}
       <div className="hidden md:flex absolute inset-0 z-10">
         <div className="w-1/2 h-full relative overflow-hidden">
@@ -180,13 +389,15 @@ const AnimatedBanner = () => {
           >
             Join us for this auspicious celebration honoring Shantinath Bhagwan
           </p>
-          
+
           {/* Image indicators for mobile */}
           <div className="flex gap-2 mt-4 md:hidden justify-center">
             {images.map((_, index) => (
-              <button 
+              <button
                 key={index}
-                className={`w-2 h-2 rounded-full transition-all ${activeImage === index ? "bg-white scale-110" : "bg-white/50"}`}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  activeImage === index ? "bg-white scale-110" : "bg-white/50"
+                }`}
                 onClick={() => setActiveImage(index)}
                 aria-label={`View image ${index + 1}`}
               />
