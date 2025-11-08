@@ -73,6 +73,50 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Gallery Section */}
+        <section className="py-8 sm:py-12 px-3 sm:px-4 relative overflow-hidden">
+          {/* Background decorative elements */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-10 left-10 w-32 h-32 bg-orange-200 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-10 right-10 w-40 h-40 bg-yellow-200 rounded-full blur-3xl"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-orange-100 rounded-full blur-3xl"></div>
+          </div>
+          
+          <div className="max-w-6xl mx-auto relative z-10">
+            <ImageCarousel />
+            
+            {/* Enhanced call-to-action section */}
+            <div className="text-center mt-8 sm:mt-12">
+              <div className="bg-gradient-to-r from-white via-orange-50 to-yellow-50 rounded-2xl shadow-lg border border-orange-100 p-6 sm:p-8 backdrop-blur-sm">
+                <h3 
+                  className="text-lg sm:text-xl font-semibold mb-4 text-gray-800"
+                  style={{
+                    fontFamily: "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
+                    textShadow: "1px 1px 2px rgba(0,0,0,0.1)"
+                  }}
+                >
+                  Explore More Spiritual Content
+                </h3>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Link href="/videos">
+                    <span className="inline-block bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                      📺 View Video Gallery
+                    </span>
+                  </Link>
+                  <Link href="/gallery">
+                    <span className="inline-block bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                      🖼️ Photo Gallery
+                    </span>
+                  </Link>
+                </div>
+                <p className="text-sm text-gray-600 mt-4 italic">
+                  Immerse yourself in the divine journey of Panchkalyanka
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Main Content Grid */}
         <main className="py-6 px-3 sm:py-8 sm:px-4">
           <div className="max-w-6xl mx-auto">
@@ -107,20 +151,6 @@ export default function Home() {
           </div>
         </main>
 
-        {/* Gallery Section */}
-        <section className="py-12 bg-orange-25">
-          <div className="max-w-6xl mx-auto px-4">
-            <ImageCarousel />
-            <div className="text-center mt-8">
-              <Link href="/videos">
-                <span className="inline-block bg-orange-700 hover:bg-orange-800 text-white font-medium py-2 sm:py-3 px-4 sm:px-6 rounded-lg transition-colors">
-                  View Video Gallery
-                </span>
-              </Link>
-            </div>
-          </div>
-        </section>
-
         <footer className="bg-gradient-to-r from-orange-100 to-yellow-100 text-center py-12 text-orange-700 mt-12">
           <p
             className="text-lg font-medium"
@@ -132,7 +162,7 @@ export default function Home() {
               fontSize: "1.2rem",
             }}
           >
-            ☸️ જય જિનેન્દ્ર ☸️
+            જય જિનેન્દ્ર 
           </p>
         </footer>
       </div>

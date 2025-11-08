@@ -1,132 +1,79 @@
+"use client";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 const Header = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth) * 100,
+        y: (e.clientY / window.innerHeight) * 100,
+      });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   return (
-    <header className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white py-6 shadow-lg">
-      <div className="container mx-auto px-4">
+    <header className="relative overflow-hidden bg-white text-gray-900 shadow-md">
+      {/* Clean gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50/50 to-blue-50/30"></div>
+      
+      {/* Subtle dynamic gradient overlay */}
+      <div
+        className="absolute inset-0 opacity-10 transition-opacity duration-700"
+        style={{
+          background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(59, 130, 246, 0.1), transparent 60%)`,
+        }}
+      ></div>
+
+      {/* Subtle floating particles */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(10)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-blue-100/30 blur-sm"
+            style={{
+              width: `${Math.random() * 3 + 1}px`,
+              height: `${Math.random() * 3 + 1}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animation: `float ${Math.random() * 10 + 10}s infinite ease-in-out`,
+              animationDelay: `${Math.random() * 5}s`,
+            }}
+          ></div>
+        ))}
+      </div>
+
+      {/* Subtle decorative pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[length:40px_40px]"></div>
+      </div>
+
+      {/* Main content */}
+      <div className="container mx-auto px-0 py-0 relative z-10">
         {/* Desktop Layout */}
-        <div className="hidden md:flex items-center justify-between">
-          {/* Logo Left */}
-          <div className="flex-shrink-0">
-            <img
-              src="/logo.png"
-              alt="Shantinath Bhagwan Logo"
-              className="h-20 w-20 object-contain"
-            />
-          </div>
-
-          {/* Center Text */}
-          <div className="text-center flex-1 mx-8">
-            <h1
-              className="text-3xl lg:text-4xl font-bold tracking-wide"
-              style={{
-                fontFamily:
-                  "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
-                letterSpacing: "2px",
-                textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
-                color: "#fef3c7",
-                fontWeight: "700",
-              }}
-            >
-              શ્રી 1008 શાંતિનાથ ભગવાન
-            </h1>
-            <h2
-              className="text-xl lg:text-2xl font-semibold mt-2"
-              style={{
-                fontFamily:
-                  "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
-                letterSpacing: "1.5px",
-                textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
-                color: "#fef3c7",
-                fontWeight: "600",
-              }}
-            >
-              પંચ કલ્યાણક મહોત્સવ - હિંમતનગર
-            </h2>
-          </div>
-
-          {/* Logo Right (for balance) */}
-          <div className="flex-shrink-0">
-            <img
-              src="/logo.png"
-              alt="Shantinath Bhagwan Logo"
-              className="h-20 w-20 object-contain"
-            />
-          </div>
+        <div className="hidden md:flex items-center justify-center">
+          <img
+            src="/Final Logo Tirthdham Mahavirdham.png"
+            alt="Tirthdham Mahavirdham Logo"
+            className="h-28 w-28 lg:h-32 lg:w-32 xl:h-36 xl:w-36 object-contain drop-shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:drop-shadow-[0_0_25px_rgba(0,0,0,0.3)] transition-all duration-500 hover:scale-105 block"
+            style={{ imageRendering: 'auto', display: 'block' }}
+          />
         </div>
 
         {/* Mobile Layout */}
-        <div className="md:hidden">
-          {/* Logo and Title Row */}
-          <div className="flex items-center justify-center space-x-4 mb-3">
-            <img
-              src="/logo.png"
-              alt="Shantinath Bhagwan Logo"
-              className="h-16 w-16 object-contain flex-shrink-0"
-            />
-            <div className="text-center">
-              <h1
-                className="text-xl font-bold tracking-wide"
-                style={{
-                  fontFamily:
-                    "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
-                  letterSpacing: "1px",
-                  textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
-                  color: "#fef3c7",
-                  fontWeight: "700",
-                }}
-              >
-                શ્રી 1008 શાંતિનાથ ભગવાન
-              </h1>
-            </div>
-          </div>
-
-          {/* Subtitle */}
-          <div className="text-center">
-            <h2
-              className="text-lg font-semibold"
-              style={{
-                fontFamily:
-                  "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
-                letterSpacing: "1px",
-                textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
-                color: "#fef3c7",
-                fontWeight: "600",
-              }}
-            >
-              પંચ કલ્યાણક મહોત્સવ - હિંમતનગર
-            </h2>
-          </div>
+        <div className="md:hidden flex items-center justify-center">
+          <img
+            src="/Final Logo Tirthdham Mahavirdham.png"
+            alt="Tirthdham Mahavirdham Logo"
+            className="h-20 w-20 sm:h-24 sm:w-24 object-contain drop-shadow-[0_0_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[0_0_20px_rgba(0,0,0,0.3)] transition-all duration-500 hover:scale-105 block"
+            style={{ imageRendering: 'auto', display: 'block' }}
+          />
         </div>
-
-        {/* <nav className="mt-6">
-          <ul className="flex justify-center space-x-6">
-            <li>
-              <Link
-                href="/"
-                className="text-white hover:text-yellow-200 transition-colors"
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/gallery"
-                className="text-white hover:text-yellow-200 transition-colors"
-              >
-                Photos
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/videos"
-                className="text-white hover:text-yellow-200 transition-colors"
-              >
-                Videos
-              </Link>
-            </li>
-          </ul>
-        </nav> */}
       </div>
     </header>
   );

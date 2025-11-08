@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import Header from "../../components/Header";
 import VideoPlayer from "../../components/VideoPlayer";
 import { VIDEOS_DATA } from "../../constants/videos";
@@ -24,6 +25,14 @@ export default function Videos() {
       <Header />
 
       <main className="py-8 px-4 max-w-6xl mx-auto">
+        <div className="flex justify-between items-center mb-8">
+          <Link href="/">
+            <button className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg flex items-center cursor-pointer">
+              ← Home
+            </button>
+          </Link>
+        </div>
+
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             વિડિઓ ગેલેરી
