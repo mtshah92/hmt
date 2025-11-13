@@ -209,6 +209,8 @@ import Image from "next/image";
 const AnimatedBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [particles, setParticles] = useState([]);
+  const [shapes, setShapes] = useState([]);
 
   useEffect(() => {
     setIsVisible(true);
@@ -219,6 +221,32 @@ const AnimatedBanner = () => {
         y: (e.clientY / window.innerHeight) * 100,
       });
     };
+
+    // Generate random particles only on client side
+    const generatedParticles = [...Array(20)].map((_, i) => ({
+      id: i,
+      width: Math.random() * 3 + 1,
+      height: Math.random() * 3 + 1,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      duration: Math.random() * 20 + 15,
+      delay: Math.random() * 5,
+    }));
+    setParticles(generatedParticles);
+
+    // Generate random shapes only on client side
+    const generatedShapes = [...Array(6)].map((_, i) => ({
+      id: i,
+      width: Math.random() * 20 + 10,
+      height: Math.random() * 20 + 10,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      rotation: Math.random() * 360,
+      duration: Math.random() * 25 + 20,
+      delay: Math.random() * 8,
+      borderRadius: i % 2 === 0 ? '50%' : '4px',
+    }));
+    setShapes(generatedShapes);
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
@@ -249,34 +277,34 @@ const AnimatedBanner = () => {
 
       {/* Rich floating particles and decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+        {particles.map((particle) => (
           <div
-            key={i}
+            key={particle.id}
             className="absolute rounded-full bg-amber-300/25 blur-[2px]"
             style={{
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `float ${Math.random() * 20 + 15}s infinite ease-in-out`,
-              animationDelay: `${Math.random() * 5}s`,
+              width: `${particle.width}px`,
+              height: `${particle.height}px`,
+              left: `${particle.left}%`,
+              top: `${particle.top}%`,
+              animation: `float ${particle.duration}s infinite ease-in-out`,
+              animationDelay: `${particle.delay}s`,
             }}
           ></div>
         ))}
         {/* Decorative geometric shapes */}
-        {[...Array(6)].map((_, i) => (
+        {shapes.map((shape) => (
           <div
-            key={`shape-${i}`}
+            key={shape.id}
             className="absolute border border-amber-400/20"
             style={{
-              width: `${Math.random() * 20 + 10}px`,
-              height: `${Math.random() * 20 + 10}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              transform: `rotate(${Math.random() * 360}deg)`,
-              animation: `float ${Math.random() * 25 + 20}s infinite ease-in-out`,
-              animationDelay: `${Math.random() * 8}s`,
-              borderRadius: i % 2 === 0 ? '50%' : '4px',
+              width: `${shape.width}px`,
+              height: `${shape.height}px`,
+              left: `${shape.left}%`,
+              top: `${shape.top}%`,
+              transform: `rotate(${shape.rotation}deg)`,
+              animation: `float ${shape.duration}s infinite ease-in-out`,
+              animationDelay: `${shape.delay}s`,
+              borderRadius: shape.borderRadius,
             }}
           ></div>
         ))}

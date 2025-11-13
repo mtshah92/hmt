@@ -61,6 +61,41 @@ export default function Home() {
 
         {/* Hero Section - Removed as AnimatedBanner replaces it */}
 
+        {/* Registration and Quiz Buttons Section */}
+        <section className="py-6 sm:py-8 px-3 sm:px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-6 sm:p-8">
+              <h3 className="text-xl sm:text-2xl font-semibold text-center mb-6 text-gray-800">
+                Quick Actions
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                {/* Registration Button */}
+                <a 
+                  href="https://webdada.sanghtech.com/c/PanchkalyanakPratishthaMahotsavHimmatnagar2025/11" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-medium py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] text-center border-2 border-orange-500 hover:border-orange-400 flex flex-col items-center justify-center min-h-[140px]"
+                >
+                  <span className="text-3xl group-hover:scale-110 transition-transform duration-300 mb-2">🏛️</span>
+                  <span className="text-sm sm:text-base font-semibold leading-tight mb-1">
+                    Click here for Pratistha and Awas Registration
+                  </span>
+                  <span className="text-xs opacity-90">Register Now →</span>
+                </a>
+                
+                {/* Quiz Button */}
+                <Link href="/quiz" className="group bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-medium py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] text-center border-2 border-purple-500 hover:border-purple-400 flex flex-col items-center justify-center min-h-[140px]">
+                  <span className="text-3xl group-hover:scale-110 transition-transform duration-300 mb-2">🎯</span>
+                  <span className="text-sm sm:text-base font-semibold leading-tight mb-1">
+                    Daily Quiz
+                  </span>
+                  <span className="text-xs opacity-90">Test Your Knowledge →</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Countdown Section */}
         <section className="py-6 sm:py-8 px-3 sm:px-4">
           <div className="max-w-4xl mx-auto">
@@ -98,6 +133,11 @@ export default function Home() {
                   Explore More Spiritual Content
                 </h3>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Link href="/quiz">
+                    <span className="inline-block bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                      🎯 Daily Quiz
+                    </span>
+                  </Link>
                   <Link href="/videos">
                     <span className="inline-block bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
                       📺 View Video Gallery
