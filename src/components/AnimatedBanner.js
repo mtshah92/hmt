@@ -319,7 +319,7 @@ const AnimatedBanner = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-amber-400/15 via-orange-400/10 to-amber-400/15 blur-2xl group-hover:blur-3xl group-hover:bg-amber-400/25 transition-all duration-500 -z-10 scale-110"></div>
           
           {/* Image container with elegant styling - Much Bigger, Responsive for Mobile */}
-          <div className="relative w-36 h-auto sm:w-40 sm:h-auto md:w-72 lg:w-96 xl:w-[28rem] 2xl:w-[32rem] transition-all duration-500 group-hover:scale-105">
+          <div className="relative w-48 h-auto sm:w-56 sm:h-auto md:w-72 lg:w-96 xl:w-[28rem] 2xl:w-[32rem] transition-all duration-500 group-hover:scale-105">
             <Image
               src="/songadh_pratikruti.png"
               alt="Songadh Pratikruti"
@@ -417,7 +417,7 @@ const AnimatedBanner = () => {
       <div className="absolute right-1 md:right-4 lg:right-6 bottom-2 md:bottom-6 lg:bottom-8 z-20">
         <div className="relative group">
           {/* Image container - Much Bigger - No background glow, Responsive for Mobile */}
-          <div className="relative w-28 h-auto sm:w-32 sm:h-auto md:w-56 md:h-auto lg:w-64 lg:h-auto xl:w-72 xl:h-auto 2xl:w-80 2xl:h-auto transition-all duration-500 group-hover:scale-105">
+          <div className="relative w-40 h-auto sm:w-48 sm:h-auto md:w-56 md:h-auto lg:w-64 lg:h-auto xl:w-72 xl:h-auto 2xl:w-80 2xl:h-auto transition-all duration-500 group-hover:scale-105">
             <Image
               src="/manstambh.png"
               alt="Manstambh"
@@ -515,30 +515,9 @@ const AnimatedBanner = () => {
         </div>
       </div>
 
-      {/* Moksha Nimantran - Center Bottom */}
-      <div className="absolute bottom-16 sm:bottom-12 md:bottom-6 left-1/2 transform -translate-x-1/2 z-20">
-        {/* Text version for Mobile */}
-        <div className="md:hidden text-center">
-          <div className="relative inline-block">
-            {/* Background glow - Golden */}
-            <div className="absolute inset-0 bg-gradient-to-r from-amber-400/15 via-orange-400/12 to-amber-400/15 blur-xl rounded-lg -z-10 scale-110"></div>
-            
-            {/* Text - Golden */}
-            <p 
-              className="text-sm sm:text-base font-bold text-orange-800 px-3 py-1.5"
-              style={{
-                fontFamily: "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
-                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 8px rgba(255, 193, 7, 0.25)',
-                filter: 'drop-shadow(0 0 4px rgba(255, 193, 7, 0.2))',
-              }}
-            >
-              આયા પંચકલ્યાણક મહાન
-            </p>
-          </div>
-        </div>
-
-        {/* Image version for Desktop */}
-        <div className="hidden md:block relative group">
+      {/* Moksha Nimantran - Center Bottom - Desktop Only */}
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 hidden md:block">
+        <div className="relative group">
           {/* Subtle glow effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-amber-400/10 via-orange-400/8 to-amber-400/10 blur-xl group-hover:blur-2xl transition-all duration-500 -z-10 scale-110"></div>
           
