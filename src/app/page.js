@@ -149,46 +149,33 @@ export default function Home() {
           </div>
         </main>
 
-        {/* Explore More Spiritual Content Section - At Last */}
+        {/* Simple Links Section - At Last */}
         <section className="py-8 sm:py-12 px-3 sm:px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center">
-              <div className="bg-gradient-to-r from-white via-orange-50 to-yellow-50 rounded-2xl shadow-lg border border-orange-100 p-6 sm:p-8 backdrop-blur-sm">
-                <h3 
-                  className="text-lg sm:text-xl font-semibold mb-4 text-gray-800"
-                  style={{
-                    fontFamily: "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
-                    textShadow: "1px 1px 2px rgba(0,0,0,0.1)"
-                  }}
-                >
-                  Explore More Spiritual Content
-                </h3>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                  <Link href="/quiz">
-                    <span className="inline-block bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-                      🎯 Daily Quiz
-                    </span>
-                  </Link>
-                  <Link href="/admin/quiz">
-                    <span className="inline-block bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm">
-                      📊 Admin
-                    </span>
-                  </Link>
-                  <Link href="/videos">
-                    <span className="inline-block bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-                      📺 View Video Gallery
-                    </span>
-                  </Link>
-                  <Link href="/gallery">
-                    <span className="inline-block bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-                      🖼️ Photo Gallery
-                    </span>
-                  </Link>
-                </div>
-                <p className="text-sm text-gray-600 mt-4 italic">
-                  Immerse yourself in the divine journey of Panchkalyanka
-                </p>
-              </div>
+            <div className="text-center flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center items-center">
+              <Link 
+                href="/videos" 
+                className="text-orange-700 hover:text-orange-800 font-semibold text-lg sm:text-xl transition-all duration-300 hover:scale-105 group"
+                style={{
+                  fontFamily: "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif"
+                }}
+              >
+                <span className="inline-block border-b-2 border-transparent hover:border-orange-500 transition-colors pb-1">
+                  📺 Video Gallery
+                </span>
+              </Link>
+              <div className="hidden sm:block w-px h-6 bg-orange-300"></div>
+              <Link 
+                href="/gallery" 
+                className="text-orange-700 hover:text-orange-800 font-semibold text-lg sm:text-xl transition-all duration-300 hover:scale-105 group"
+                style={{
+                  fontFamily: "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif"
+                }}
+              >
+                <span className="inline-block border-b-2 border-transparent hover:border-orange-500 transition-colors pb-1">
+                  🖼️ Photo Gallery
+                </span>
+              </Link>
             </div>
           </div>
         </section>

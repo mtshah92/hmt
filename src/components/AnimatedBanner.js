@@ -283,7 +283,7 @@ const AnimatedBanner = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-amber-400/15 via-orange-400/10 to-amber-400/15 blur-2xl group-hover:blur-3xl group-hover:bg-amber-400/25 transition-all duration-500 -z-10 scale-110"></div>
           
           {/* Image container with elegant styling - Much Bigger, Responsive for Mobile */}
-          <div className="relative w-24 h-auto sm:w-32 sm:h-auto md:w-72 lg:w-96 xl:w-[28rem] 2xl:w-[32rem] transition-all duration-500 group-hover:scale-105">
+          <div className="relative w-36 h-auto sm:w-40 sm:h-auto md:w-72 lg:w-96 xl:w-[28rem] 2xl:w-[32rem] transition-all duration-500 group-hover:scale-105">
             <Image
               src="/songadh_pratikruti.png"
               alt="Songadh Pratikruti"
@@ -381,7 +381,7 @@ const AnimatedBanner = () => {
       <div className="absolute right-1 md:right-4 lg:right-6 bottom-2 md:bottom-6 lg:bottom-8 z-20">
         <div className="relative group">
           {/* Image container - Much Bigger - No background glow, Responsive for Mobile */}
-          <div className="relative w-16 h-auto sm:w-20 sm:h-auto md:w-56 md:h-auto lg:w-64 lg:h-auto xl:w-72 xl:h-auto 2xl:w-80 2xl:h-auto transition-all duration-500 group-hover:scale-105">
+          <div className="relative w-28 h-auto sm:w-32 sm:h-auto md:w-56 md:h-auto lg:w-64 lg:h-auto xl:w-72 xl:h-auto 2xl:w-80 2xl:h-auto transition-all duration-500 group-hover:scale-105">
             <Image
               src="/manstambh.png"
               alt="Manstambh"
