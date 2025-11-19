@@ -479,6 +479,32 @@ const AnimatedBanner = () => {
         </div>
       </div>
 
+      {/* Moksha Nimantran - Center Bottom */}
+      <div className="absolute bottom-4 md:bottom-6 left-1/2 transform -translate-x-1/2 z-20">
+        <div className="relative group">
+          {/* Subtle glow effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-amber-400/10 via-orange-400/8 to-amber-400/10 blur-xl group-hover:blur-2xl transition-all duration-500 -z-10 scale-110"></div>
+          
+          {/* Image container - Much Larger size */}
+          <div className="relative w-48 h-auto sm:w-56 sm:h-auto md:w-64 md:h-auto lg:w-80 lg:h-auto xl:w-96 xl:h-auto 2xl:w-[28rem] 2xl:h-auto transition-all duration-500 group-hover:scale-105">
+            <Image
+              src="/moksha_nimantran.png"
+              alt="Moksha Nimantran"
+              width={200}
+              height={100}
+              className="w-full h-auto object-contain drop-shadow-xl"
+              style={{
+                filter: 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 8px rgba(255, 193, 7, 0.15))',
+              }}
+              priority
+            />
+            
+            {/* Subtle shine overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/8 to-transparent animate-shimmer pointer-events-none"></div>
+          </div>
+        </div>
+      </div>
+
       {/* Add custom animations */}
       <style jsx>{`
         @keyframes float {
