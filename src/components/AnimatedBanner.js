@@ -277,13 +277,13 @@ const AnimatedBanner = () => {
 
 
       {/* Songadh Pratikruti - Left Side (Bottom Left) - Much Bigger */}
-      <div className="absolute left-2 md:left-4 lg:left-6 bottom-4 md:bottom-6 lg:bottom-8 z-20 hidden md:block">
+      <div className="absolute left-1 md:left-4 lg:left-6 bottom-2 md:bottom-6 lg:bottom-8 z-20">
         <div className="relative group">
           {/* Glow effect - Golden */}
           <div className="absolute inset-0 bg-gradient-to-r from-amber-400/15 via-orange-400/10 to-amber-400/15 blur-2xl group-hover:blur-3xl group-hover:bg-amber-400/25 transition-all duration-500 -z-10 scale-110"></div>
           
-          {/* Image container with elegant styling - Much Bigger */}
-          <div className="relative w-56 h-auto md:w-72 lg:w-96 xl:w-[28rem] 2xl:w-[32rem] transition-all duration-500 group-hover:scale-105">
+          {/* Image container with elegant styling - Much Bigger, Responsive for Mobile */}
+          <div className="relative w-24 h-auto sm:w-32 sm:h-auto md:w-72 lg:w-96 xl:w-[28rem] 2xl:w-[32rem] transition-all duration-500 group-hover:scale-105">
             <Image
               src="/songadh_pratikruti.png"
               alt="Songadh Pratikruti"
@@ -305,14 +305,17 @@ const AnimatedBanner = () => {
       {/* Kund Kund Acharya - Left Side (Top Left on Mobile) */}
       <div className="absolute left-2 md:left-4 top-2 md:top-4 z-20">
         <div className="relative group">
+          {/* Background circle for contrast */}
+          <div className="absolute inset-0 bg-white/90 rounded-full shadow-[0_0_20px_rgba(0,0,0,0.3)] -z-20 scale-125"></div>
+          
           {/* Enhanced glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 via-orange-400/15 to-amber-400/20 rounded-full blur-xl group-hover:blur-2xl group-hover:bg-amber-400/30 transition-all duration-500 -z-10 scale-110"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-400/30 via-orange-400/25 to-amber-400/30 rounded-full blur-xl group-hover:blur-2xl group-hover:bg-amber-400/40 transition-all duration-500 -z-10 scale-110"></div>
           
-          {/* Outer glow ring */}
-          <div className="absolute inset-0 rounded-full border-2 border-amber-300/30 shadow-[0_0_15px_rgba(255,193,7,0.2)] group-hover:shadow-[0_0_20px_rgba(255,193,7,0.3)] transition-all duration-500 -z-10 scale-105"></div>
+          {/* Outer glow ring - More visible */}
+          <div className="absolute inset-0 rounded-full border-[3px] border-amber-500/50 shadow-[0_0_20px_rgba(255,193,7,0.4)] group-hover:shadow-[0_0_30px_rgba(255,193,7,0.5)] transition-all duration-500 -z-10 scale-105"></div>
           
-          {/* Circular image container - Same size as Gurudev */}
-          <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full overflow-hidden border-2 border-amber-400/60 shadow-[0_0_12px_rgba(255,193,7,0.25),0_0_20px_rgba(255,152,0,0.15)] group-hover:border-amber-300/70 group-hover:shadow-[0_0_15px_rgba(255,193,7,0.35),0_0_25px_rgba(255,152,0,0.25)] transition-all duration-500 group-hover:scale-105">
+          {/* Circular image container - Same size as Gurudev with stronger border */}
+          <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full overflow-hidden border-[3px] border-amber-600/80 bg-white/10 shadow-[0_0_15px_rgba(255,193,7,0.4),0_0_25px_rgba(255,152,0,0.3),0_4px_15px_rgba(0,0,0,0.4)] group-hover:border-amber-500/90 group-hover:shadow-[0_0_20px_rgba(255,193,7,0.5),0_0_35px_rgba(255,152,0,0.4),0_6px_20px_rgba(0,0,0,0.5)] transition-all duration-500 group-hover:scale-105">
             <Image
               src="/kund_kund_acharya.png"
               alt="Kund Kund Acharya"
@@ -339,14 +342,17 @@ const AnimatedBanner = () => {
       {/* Gurudev - Top Right - Smaller */}
       <div className="absolute right-2 md:right-4 top-2 md:top-4 z-20">
         <div className="relative group">
+          {/* Background circle for contrast */}
+          <div className="absolute inset-0 bg-white/90 rounded-full shadow-[0_0_20px_rgba(0,0,0,0.3)] -z-20 scale-125"></div>
+          
           {/* Enhanced glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 via-orange-400/15 to-amber-400/20 rounded-full blur-xl group-hover:blur-2xl group-hover:bg-amber-400/30 transition-all duration-500 -z-10 scale-110"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-400/30 via-orange-400/25 to-amber-400/30 rounded-full blur-xl group-hover:blur-2xl group-hover:bg-amber-400/40 transition-all duration-500 -z-10 scale-110"></div>
           
-          {/* Outer glow ring */}
-          <div className="absolute inset-0 rounded-full border-2 border-amber-300/30 shadow-[0_0_15px_rgba(255,193,7,0.2)] group-hover:shadow-[0_0_20px_rgba(255,193,7,0.3)] transition-all duration-500 -z-10 scale-105"></div>
+          {/* Outer glow ring - More visible */}
+          <div className="absolute inset-0 rounded-full border-3 border-amber-500/50 shadow-[0_0_20px_rgba(255,193,7,0.4)] group-hover:shadow-[0_0_30px_rgba(255,193,7,0.5)] transition-all duration-500 -z-10 scale-105"></div>
           
-          {/* Circular image container - Smaller */}
-          <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full overflow-hidden border-2 border-amber-400/60 shadow-[0_0_12px_rgba(255,193,7,0.25),0_0_20px_rgba(255,152,0,0.15)] group-hover:border-amber-300/70 group-hover:shadow-[0_0_15px_rgba(255,193,7,0.35),0_0_25px_rgba(255,152,0,0.25)] transition-all duration-500 group-hover:scale-105">
+          {/* Circular image container - Smaller with stronger border */}
+          <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full overflow-hidden border-3 border-amber-600/80 bg-white/10 shadow-[0_0_15px_rgba(255,193,7,0.4),0_0_25px_rgba(255,152,0,0.3),0_4px_15px_rgba(0,0,0,0.4)] group-hover:border-amber-500/90 group-hover:shadow-[0_0_20px_rgba(255,193,7,0.5),0_0_35px_rgba(255,152,0,0.4),0_6px_20px_rgba(0,0,0,0.5)] transition-all duration-500 group-hover:scale-105">
             <Image
               src="/gurudev.png"
               alt="Gurudev"
@@ -372,10 +378,10 @@ const AnimatedBanner = () => {
       </div>
 
       {/* Manstambh - Right Side (Bottom Right) - Much Bigger - No Background */}
-      <div className="absolute right-2 md:right-4 lg:right-6 bottom-4 md:bottom-6 lg:bottom-8 z-20 hidden md:block">
+      <div className="absolute right-1 md:right-4 lg:right-6 bottom-2 md:bottom-6 lg:bottom-8 z-20">
         <div className="relative group">
-          {/* Image container - Much Bigger - No background glow */}
-          <div className="relative w-40 h-auto sm:w-48 sm:h-auto md:w-56 md:h-auto lg:w-64 lg:h-auto xl:w-72 xl:h-auto 2xl:w-80 2xl:h-auto transition-all duration-500 group-hover:scale-105">
+          {/* Image container - Much Bigger - No background glow, Responsive for Mobile */}
+          <div className="relative w-16 h-auto sm:w-20 sm:h-auto md:w-56 md:h-auto lg:w-64 lg:h-auto xl:w-72 xl:h-auto 2xl:w-80 2xl:h-auto transition-all duration-500 group-hover:scale-105">
             <Image
               src="/manstambh.png"
               alt="Manstambh"

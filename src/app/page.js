@@ -61,9 +61,22 @@ export default function Home() {
 
         {/* Hero Section - Removed as AnimatedBanner replaces it */}
 
-        {/* Registration and Quiz Buttons - Round Shape Side by Side */}
+        {/* Registration Button - Round Shape */}
         <section className="py-6 sm:py-8 px-3 sm:px-4">
-          <div className="max-w-5xl mx-auto flex flex-row items-center justify-center gap-4 sm:gap-6">
+          <div className="max-w-5xl mx-auto flex flex-col items-center justify-center gap-3 sm:gap-4">
+            {/* Registration Message */}
+            <div className="text-center mb-3 sm:mb-4">
+              <p 
+                className="text-base sm:text-lg md:text-xl font-bold text-orange-800 leading-relaxed"
+                style={{
+                  fontFamily: "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
+                  textShadow: "2px 2px 4px rgba(0,0,0,0.15), 0 0 8px rgba(255, 152, 0, 0.2)"
+                }}
+              >
+                📝 Pratistha Mahotsav Registration Started! Please Register Soon
+              </p>
+            </div>
+            
             {/* Awas/Registration Button - Round */}
             <a 
               href="https://webdada.sanghtech.com/c/PanchkalyanakPratishthaMahotsavHimmatnagar2025/11" 
@@ -71,16 +84,8 @@ export default function Home() {
               rel="noopener noreferrer"
               className="group bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-semibold py-4 px-6 sm:py-5 sm:px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-center border-2 border-orange-500 hover:border-orange-400 flex items-center justify-center min-w-[140px] sm:min-w-[160px]"
             >
-              <span className="text-base sm:text-lg">Awas/Registration</span>
+              <span className="text-base sm:text-lg">Awas / Registration Link</span>
             </a>
-            
-            {/* Quiz Button - Round */}
-            <Link 
-              href="/quiz" 
-              className="group bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold py-4 px-6 sm:py-5 sm:px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-center border-2 border-purple-500 hover:border-purple-400 flex items-center justify-center min-w-[140px] sm:min-w-[160px]"
-            >
-              <span className="text-base sm:text-lg">Quiz</span>
-            </Link>
           </div>
         </section>
 
