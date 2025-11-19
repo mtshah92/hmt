@@ -268,6 +268,42 @@ const AnimatedBanner = () => {
         }}></div>
       </div>
 
+      {/* Textured overlay patterns */}
+      <div className="absolute inset-0 opacity-[0.08] z-5">
+        {/* Traditional fabric texture */}
+        <div className="absolute inset-0" style={{
+          backgroundImage: `repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            rgba(184, 78, 16, 0.03) 10px,
+            rgba(184, 78, 16, 0.03) 11px
+          ),
+          repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 10px,
+            rgba(184, 78, 16, 0.03) 10px,
+            rgba(184, 78, 16, 0.03) 11px
+          )`
+        }}></div>
+      </div>
+
+      {/* Subtle paper texture */}
+      <div className="absolute inset-0 opacity-[0.04] z-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b84e10' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+        }}></div>
+      </div>
+
+      {/* Grain texture for depth */}
+      <div className="absolute inset-0 opacity-[0.03] z-5 pointer-events-none">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(184, 78, 16, 0.15) 1px, transparent 0)`,
+          backgroundSize: '20px 20px'
+        }}></div>
+      </div>
+
 
       {/* Additional floating light orbs */}
       <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-amber-200/20 to-transparent rounded-full blur-2xl animate-pulse" style={{ animationDuration: '4s' }}></div>
@@ -480,13 +516,13 @@ const AnimatedBanner = () => {
       </div>
 
       {/* Moksha Nimantran - Center Bottom */}
-      <div className="absolute bottom-4 md:bottom-6 left-1/2 transform -translate-x-1/2 z-20">
+      <div className="absolute bottom-16 sm:bottom-12 md:bottom-6 left-1/2 transform -translate-x-1/2 z-20">
         <div className="relative group">
           {/* Subtle glow effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-amber-400/10 via-orange-400/8 to-amber-400/10 blur-xl group-hover:blur-2xl transition-all duration-500 -z-10 scale-110"></div>
           
-          {/* Image container - Much Larger size */}
-          <div className="relative w-48 h-auto sm:w-56 sm:h-auto md:w-64 md:h-auto lg:w-80 lg:h-auto xl:w-96 xl:h-auto 2xl:w-[28rem] 2xl:h-auto transition-all duration-500 group-hover:scale-105">
+          {/* Image container - Smaller on mobile to avoid overlap, larger on desktop */}
+          <div className="relative w-32 h-auto sm:w-40 sm:h-auto md:w-64 md:h-auto lg:w-80 lg:h-auto xl:w-96 xl:h-auto 2xl:w-[28rem] 2xl:h-auto transition-all duration-500 group-hover:scale-105">
             <Image
               src="/moksha_nimantran.png"
               alt="Moksha Nimantran"
