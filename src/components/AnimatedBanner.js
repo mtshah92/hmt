@@ -517,12 +517,33 @@ const AnimatedBanner = () => {
 
       {/* Moksha Nimantran - Center Bottom */}
       <div className="absolute bottom-16 sm:bottom-12 md:bottom-6 left-1/2 transform -translate-x-1/2 z-20">
-        <div className="relative group">
+        {/* Text version for Mobile */}
+        <div className="md:hidden text-center">
+          <div className="relative inline-block">
+            {/* Background glow - Golden */}
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-400/15 via-orange-400/12 to-amber-400/15 blur-xl rounded-lg -z-10 scale-110"></div>
+            
+            {/* Text - Golden */}
+            <p 
+              className="text-sm sm:text-base font-bold text-orange-800 px-3 py-1.5"
+              style={{
+                fontFamily: "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
+                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 8px rgba(255, 193, 7, 0.25)',
+                filter: 'drop-shadow(0 0 4px rgba(255, 193, 7, 0.2))',
+              }}
+            >
+              આયા પંચકલ્યાણક મહાન
+            </p>
+          </div>
+        </div>
+
+        {/* Image version for Desktop */}
+        <div className="hidden md:block relative group">
           {/* Subtle glow effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-amber-400/10 via-orange-400/8 to-amber-400/10 blur-xl group-hover:blur-2xl transition-all duration-500 -z-10 scale-110"></div>
           
-          {/* Image container - Smaller on mobile to avoid overlap, larger on desktop */}
-          <div className="relative w-32 h-auto sm:w-40 sm:h-auto md:w-64 md:h-auto lg:w-80 lg:h-auto xl:w-96 xl:h-auto 2xl:w-[28rem] 2xl:h-auto transition-all duration-500 group-hover:scale-105">
+          {/* Image container - Larger on desktop */}
+          <div className="relative w-64 h-auto lg:w-80 lg:h-auto xl:w-96 xl:h-auto 2xl:w-[28rem] 2xl:h-auto transition-all duration-500 group-hover:scale-105">
             <Image
               src="/moksha_nimantran.png"
               alt="Moksha Nimantran"
