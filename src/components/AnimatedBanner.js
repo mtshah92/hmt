@@ -208,190 +208,267 @@ import Image from "next/image";
 
 const AnimatedBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [particles, setParticles] = useState([]);
-  const [shapes, setShapes] = useState([]);
 
   useEffect(() => {
     setIsVisible(true);
-
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 100,
-        y: (e.clientY / window.innerHeight) * 100,
-      });
-    };
-
-    // Generate random particles only on client side
-    const generatedParticles = [...Array(20)].map((_, i) => ({
-      id: i,
-      width: Math.random() * 3 + 1,
-      height: Math.random() * 3 + 1,
-      left: Math.random() * 100,
-      top: Math.random() * 100,
-      duration: Math.random() * 20 + 15,
-      delay: Math.random() * 5,
-    }));
-    setParticles(generatedParticles);
-
-    // Generate random shapes only on client side
-    const generatedShapes = [...Array(6)].map((_, i) => ({
-      id: i,
-      width: Math.random() * 20 + 10,
-      height: Math.random() * 20 + 10,
-      left: Math.random() * 100,
-      top: Math.random() * 100,
-      rotation: Math.random() * 360,
-      duration: Math.random() * 25 + 20,
-      delay: Math.random() * 8,
-      borderRadius: i % 2 === 0 ? '50%' : '4px',
-    }));
-    setShapes(generatedShapes);
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return (
-    <section className="relative w-full h-[350px] md:h-[420px] overflow-hidden">
-      {/* Modern gradient background - more sophisticated */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-amber-900 to-orange-900"></div>
+    <section className="relative w-full h-[350px] md:h-[420px] lg:h-[480px] overflow-hidden">
+      {/* Rich multi-layer gradient background - Golden theme */}
+      <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50"></div>
       
-      {/* Subtle animated gradient overlay */}
-      <div
-        className="absolute inset-0 opacity-20 transition-opacity duration-1000"
-        style={{
-          background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(255, 215, 0, 0.15), transparent 70%)`,
-        }}
-      ></div>
+      {/* Secondary gradient layer */}
+      <div className="absolute inset-0 bg-gradient-to-t from-orange-100/60 via-amber-50/40 to-transparent"></div>
+      
+      {/* Radial gradient from center for depth */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-100/40 via-orange-50/20 to-transparent"></div>
+      
+      {/* Top radial gradient for light source effect */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,_var(--tw-gradient-stops))] from-yellow-100/50 via-amber-50/30 to-transparent"></div>
+      
+      {/* Animated gradient overlay */}
+      <div className="absolute inset-0 opacity-25 bg-[radial-gradient(circle_at_50%_50%,rgba(255,193,7,0.2),rgba(255,152,0,0.12),transparent_70%)]"></div>
 
-      {/* Elegant pattern overlay - subtle */}
+      {/* Elegant diagonal pattern overlay with more visibility */}
+      <div className="absolute inset-0 opacity-[0.06]">
+        <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(45deg,transparent_47%,rgba(255,255,255,0.2)_48%,rgba(255,255,255,0.2)_52%,transparent_53%)] bg-[length:100px_100px]"></div>
+      </div>
+
+      {/* Subtle dot pattern texture */}
       <div className="absolute inset-0 opacity-[0.03]">
-        <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(45deg,transparent_48%,rgba(255,255,255,0.1)_49%,rgba(255,255,255,0.1)_51%,transparent_52%)] bg-[length:60px_60px]"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.1)_1px,transparent_1px)] bg-[length:50px_50px]"></div>
       </div>
 
-      {/* Subtle light effect */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-500/20 to-transparent"></div>
+      {/* Enhanced light rays effect */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-200/25 to-transparent"></div>
+        <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-orange-300/25 to-transparent"></div>
+        <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-orange-300/25 to-transparent"></div>
+        <div className="absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-transparent via-amber-200/20 to-transparent"></div>
       </div>
 
-      {/* Rich floating particles and decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {particles.map((particle) => (
-          <div
-            key={particle.id}
-            className="absolute rounded-full bg-amber-300/25 blur-[2px]"
-            style={{
-              width: `${particle.width}px`,
-              height: `${particle.height}px`,
-              left: `${particle.left}%`,
-              top: `${particle.top}%`,
-              animation: `float ${particle.duration}s infinite ease-in-out`,
-              animationDelay: `${particle.delay}s`,
-            }}
-          ></div>
-        ))}
-        {/* Decorative geometric shapes */}
-        {shapes.map((shape) => (
-          <div
-            key={shape.id}
-            className="absolute border border-amber-400/20"
-            style={{
-              width: `${shape.width}px`,
-              height: `${shape.height}px`,
-              left: `${shape.left}%`,
-              top: `${shape.top}%`,
-              transform: `rotate(${shape.rotation}deg)`,
-              animation: `float ${shape.duration}s infinite ease-in-out`,
-              animationDelay: `${shape.delay}s`,
-              borderRadius: shape.borderRadius,
-            }}
-          ></div>
-        ))}
+      {/* Enhanced decorative circular gradient orbs with more depth */}
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-amber-200/25 via-orange-200/20 to-transparent rounded-full blur-3xl -translate-x-1/3 -translate-y-1/3"></div>
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-gradient-to-tl from-orange-200/25 via-amber-200/20 to-transparent rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
+      <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-gradient-to-br from-yellow-100/20 via-amber-100/15 to-transparent rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute top-1/4 right-1/4 w-[300px] h-[300px] bg-gradient-to-br from-amber-100/15 to-transparent rounded-full blur-2xl"></div>
+      <div className="absolute bottom-1/4 left-1/4 w-[350px] h-[350px] bg-gradient-to-tr from-orange-100/15 to-transparent rounded-full blur-2xl"></div>
+
+      {/* Subtle wave pattern overlay */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div className="absolute top-0 left-0 w-full h-full" style={{
+          backgroundImage: `repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(255,255,255,0.1) 2px,
+            rgba(255,255,255,0.1) 4px
+          )`,
+        }}></div>
       </div>
 
-      {/* Decorative side patterns */}
-      <div className="absolute left-4 top-1/2 transform -translate-y-1/2 hidden md:block z-5">
-        <div className="flex flex-col gap-3 items-center">
-          <div className="w-0.5 h-16 bg-gradient-to-b from-transparent via-amber-400/50 to-transparent"></div>
-          <div className="w-2 h-2 rounded-full bg-amber-400/40 border border-amber-300/30"></div>
-          <div className="w-0.5 h-16 bg-gradient-to-b from-transparent via-amber-400/50 to-transparent"></div>
-          <div className="w-1 h-1 rounded-full bg-amber-300/30"></div>
-          <div className="w-0.5 h-12 bg-gradient-to-b from-transparent via-amber-400/40 to-transparent"></div>
+
+      {/* Additional floating light orbs */}
+      <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-amber-200/20 to-transparent rounded-full blur-2xl animate-pulse" style={{ animationDuration: '4s' }}></div>
+      <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-tl from-orange-200/20 to-transparent rounded-full blur-2xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
+      <div className="absolute top-1/2 right-20 w-28 h-28 bg-gradient-to-br from-yellow-200/15 to-transparent rounded-full blur-xl animate-pulse" style={{ animationDuration: '6s', animationDelay: '2s' }}></div>
+
+
+
+      {/* Songadh Pratikruti - Left Side (Bottom Left) - Much Bigger */}
+      <div className="absolute left-2 md:left-4 lg:left-6 bottom-4 md:bottom-6 lg:bottom-8 z-20 hidden md:block">
+        <div className="relative group">
+          {/* Glow effect - Golden */}
+          <div className="absolute inset-0 bg-gradient-to-r from-amber-400/15 via-orange-400/10 to-amber-400/15 blur-2xl group-hover:blur-3xl group-hover:bg-amber-400/25 transition-all duration-500 -z-10 scale-110"></div>
+          
+          {/* Image container with elegant styling - Much Bigger */}
+          <div className="relative w-56 h-auto md:w-72 lg:w-96 xl:w-[28rem] 2xl:w-[32rem] transition-all duration-500 group-hover:scale-105">
+            <Image
+              src="/songadh_pratikruti.png"
+              alt="Songadh Pratikruti"
+              width={224}
+              height={300}
+              className="w-full h-auto object-contain drop-shadow-2xl"
+              style={{
+                filter: 'drop-shadow(0 8px 24px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 15px rgba(99, 102, 241, 0.2))',
+              }}
+              priority
+            />
+            
+            {/* Subtle shine overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer pointer-events-none"></div>
+          </div>
         </div>
       </div>
-      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 hidden md:block z-5">
-        <div className="flex flex-col gap-3 items-center">
-          <div className="w-0.5 h-16 bg-gradient-to-b from-transparent via-amber-400/50 to-transparent"></div>
-          <div className="w-2 h-2 rounded-full bg-amber-400/40 border border-amber-300/30"></div>
-          <div className="w-0.5 h-16 bg-gradient-to-b from-transparent via-amber-400/50 to-transparent"></div>
-          <div className="w-1 h-1 rounded-full bg-amber-300/30"></div>
-          <div className="w-0.5 h-12 bg-gradient-to-b from-transparent via-amber-400/40 to-transparent"></div>
+
+      {/* Kund Kund Acharya - Left Side (Top Left on Mobile) */}
+      <div className="absolute left-2 md:left-4 top-2 md:top-4 z-20">
+        <div className="relative group">
+          {/* Enhanced glow effect */}
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 via-orange-400/15 to-amber-400/20 rounded-full blur-xl group-hover:blur-2xl group-hover:bg-amber-400/30 transition-all duration-500 -z-10 scale-110"></div>
+          
+          {/* Outer glow ring */}
+          <div className="absolute inset-0 rounded-full border-2 border-amber-300/30 shadow-[0_0_15px_rgba(255,193,7,0.2)] group-hover:shadow-[0_0_20px_rgba(255,193,7,0.3)] transition-all duration-500 -z-10 scale-105"></div>
+          
+          {/* Circular image container - Same size as Gurudev */}
+          <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full overflow-hidden border-2 border-amber-400/60 shadow-[0_0_12px_rgba(255,193,7,0.25),0_0_20px_rgba(255,152,0,0.15)] group-hover:border-amber-300/70 group-hover:shadow-[0_0_15px_rgba(255,193,7,0.35),0_0_25px_rgba(255,152,0,0.25)] transition-all duration-500 group-hover:scale-105">
+            <Image
+              src="/kund_kund_acharya.png"
+              alt="Kund Kund Acharya"
+              width={128}
+              height={128}
+              className="w-full h-full object-cover brightness-110 contrast-110"
+              style={{
+                filter: 'brightness(1.1) contrast(1.1) saturate(1.1)',
+              }}
+              priority
+            />
+            
+            {/* Shine overlay effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent rounded-full pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-white/30 rounded-full animate-shine pointer-events-none"></div>
+          </div>
+          
+          {/* Decorative rings */}
+          <div className="absolute inset-0 rounded-full border-2 border-amber-200/30 pointer-events-none"></div>
+          <div className="absolute inset-[-2px] rounded-full border border-amber-300/20 pointer-events-none"></div>
         </div>
       </div>
 
-      {/* Top and bottom decorative elements */}
-      <div className="absolute top-12 left-1/2 transform -translate-x-1/2 hidden md:flex gap-8 z-5">
-        <div className="w-1 h-1 rounded-full bg-amber-400/50"></div>
-        <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-400/40 to-transparent"></div>
-        <div className="w-1 h-1 rounded-full bg-amber-400/50"></div>
-        <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-400/40 to-transparent"></div>
-        <div className="w-1 h-1 rounded-full bg-amber-400/50"></div>
-      </div>
-      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 hidden md:flex gap-8 z-5">
-        <div className="w-1 h-1 rounded-full bg-amber-400/50"></div>
-        <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-400/40 to-transparent"></div>
-        <div className="w-1 h-1 rounded-full bg-amber-400/50"></div>
-        <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-400/40 to-transparent"></div>
-        <div className="w-1 h-1 rounded-full bg-amber-400/50"></div>
-      </div>
-
-      {/* Modern elegant borders - thin and refined */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amber-400/60 to-transparent"></div>
-      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amber-400/60 to-transparent"></div>
-      <div className="absolute top-0 bottom-0 left-0 w-[1px] bg-gradient-to-b from-transparent via-amber-400/60 to-transparent"></div>
-      <div className="absolute top-0 bottom-0 right-0 w-[1px] bg-gradient-to-b from-transparent via-amber-400/60 to-transparent"></div>
-
-      {/* Enhanced corner accents with decorative elements */}
-      <div className="absolute top-4 left-4 w-16 h-16 border-l-2 border-t-2 border-amber-400/50">
-        <div className="absolute top-1 left-1 w-2 h-2 border-l border-t border-amber-300/40"></div>
-      </div>
-      <div className="absolute top-4 right-4 w-16 h-16 border-r-2 border-t-2 border-amber-400/50">
-        <div className="absolute top-1 right-1 w-2 h-2 border-r border-t border-amber-300/40"></div>
-      </div>
-      <div className="absolute bottom-4 left-4 w-16 h-16 border-l-2 border-b-2 border-amber-400/50">
-        <div className="absolute bottom-1 left-1 w-2 h-2 border-l border-b border-amber-300/40"></div>
-      </div>
-      <div className="absolute bottom-4 right-4 w-16 h-16 border-r-2 border-b-2 border-amber-400/50">
-        <div className="absolute bottom-1 right-1 w-2 h-2 border-r border-b border-amber-300/40"></div>
+      {/* Gurudev - Top Right - Smaller */}
+      <div className="absolute right-2 md:right-4 top-2 md:top-4 z-20">
+        <div className="relative group">
+          {/* Enhanced glow effect */}
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 via-orange-400/15 to-amber-400/20 rounded-full blur-xl group-hover:blur-2xl group-hover:bg-amber-400/30 transition-all duration-500 -z-10 scale-110"></div>
+          
+          {/* Outer glow ring */}
+          <div className="absolute inset-0 rounded-full border-2 border-amber-300/30 shadow-[0_0_15px_rgba(255,193,7,0.2)] group-hover:shadow-[0_0_20px_rgba(255,193,7,0.3)] transition-all duration-500 -z-10 scale-105"></div>
+          
+          {/* Circular image container - Smaller */}
+          <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full overflow-hidden border-2 border-amber-400/60 shadow-[0_0_12px_rgba(255,193,7,0.25),0_0_20px_rgba(255,152,0,0.15)] group-hover:border-amber-300/70 group-hover:shadow-[0_0_15px_rgba(255,193,7,0.35),0_0_25px_rgba(255,152,0,0.25)] transition-all duration-500 group-hover:scale-105">
+            <Image
+              src="/gurudev.png"
+              alt="Gurudev"
+              width={128}
+              height={128}
+              className="w-full h-full object-cover brightness-110 contrast-110"
+              style={{
+                transform: 'scaleX(-1)',
+                filter: 'brightness(1.1) contrast(1.1) saturate(1.1)',
+              }}
+              priority
+            />
+            
+            {/* Shine overlay effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent rounded-full pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-white/30 rounded-full animate-shine pointer-events-none"></div>
       </div>
 
-      {/* Additional corner decorative dots */}
-      <div className="absolute top-8 left-8 w-1.5 h-1.5 rounded-full bg-amber-400/40"></div>
-      <div className="absolute top-8 right-8 w-1.5 h-1.5 rounded-full bg-amber-400/40"></div>
-      <div className="absolute bottom-8 left-8 w-1.5 h-1.5 rounded-full bg-amber-400/40"></div>
-      <div className="absolute bottom-8 right-8 w-1.5 h-1.5 rounded-full bg-amber-400/40"></div>
+          {/* Decorative rings */}
+          <div className="absolute inset-0 rounded-full border-2 border-amber-200/30 pointer-events-none"></div>
+          <div className="absolute inset-[-2px] rounded-full border border-amber-300/20 pointer-events-none"></div>
+        </div>
+      </div>
 
-      {/* Center content with Pratistha Logo */}
-      <div className="relative h-full flex flex-col items-center justify-center px-4 z-10">
+      {/* Manstambh - Right Side (Bottom Right) - Much Bigger - No Background */}
+      <div className="absolute right-2 md:right-4 lg:right-6 bottom-4 md:bottom-6 lg:bottom-8 z-20 hidden md:block">
+        <div className="relative group">
+          {/* Image container - Much Bigger - No background glow */}
+          <div className="relative w-40 h-auto sm:w-48 sm:h-auto md:w-56 md:h-auto lg:w-64 lg:h-auto xl:w-72 xl:h-auto 2xl:w-80 2xl:h-auto transition-all duration-500 group-hover:scale-105">
+            <Image
+              src="/manstambh.png"
+              alt="Manstambh"
+              width={112}
+              height={224}
+              className="w-full h-full object-contain drop-shadow-2xl"
+              style={{
+                filter: 'drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3))',
+              }}
+              priority
+            />
+      </div>
+      </div>
+      </div>
+
+      {/* Center content with Pratitstha Title - Moved Up */}
+      <div className="relative h-full flex flex-col items-center justify-center px-4 md:px-8 lg:px-12 z-10" style={{ transform: 'translateY(-20px)' }}>
         <div
-          className={`transition-all duration-1000 ${
+          className={`w-full max-w-6xl mx-auto transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95"
           }`}
         >
-          {/* Pratistha Logo - Main Visual Element */}
-          <div className="relative w-full max-w-[600px] md:max-w-[700px] lg:max-w-[800px] mx-auto">
+          {/* Pratitstha Title - Centered with attractive styling */}
+          <div className="relative w-full flex justify-center">
+            <div className="relative w-full max-w-[90%] sm:max-w-[80%] md:max-w-[75%] lg:max-w-[70%] xl:max-w-[65%]">
+              {/* Glow effect behind title - Golden */}
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-300/15 via-orange-300/12 to-amber-300/15 blur-3xl rounded-lg -z-10 transform scale-110"></div>
+              
+              {/* Title Image */}
+              <div className="relative">
             <Image
-              src="/Pratistha_logo.png"
-              alt="Shri Shantinath Digambar Jinbimb Panchkalyanak Pratishtha Mahotsav"
-              width={800}
-              height={800}
+                  src="/pratitstha_title.png"
+                  alt="Panchakalyanak Pratishtha Mahotsav"
+                  width={1200}
+                  height={300}
               className="w-full h-auto object-contain drop-shadow-2xl"
               priority
               style={{
-                filter: 'drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5))',
-              }}
-            />
+                    filter: 'drop-shadow(0 8px 32px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 12px rgba(255, 193, 7, 0.15))',
+                  }}
+                />
+                
+                {/* Subtle shimmer effect overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer pointer-events-none"></div>
+              </div>
+              
+              {/* Date and Location Text in Gujarati */}
+              <div className="mt-4 md:mt-6 text-center space-y-3">
+                {/* Date Text with enhanced styling */}
+                <div className="relative block">
+                  {/* Background glow - Golden */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-amber-400/10 via-orange-400/10 to-amber-400/10 blur-xl rounded-lg -z-10 scale-110"></div>
+                  
+                  {/* Text with gradient - Golden */}
+                  <div 
+                    className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold px-4 py-2"
+                    style={{
+                      fontFamily: "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
+                      background: 'linear-gradient(to right, #92400e, #9a3412, #92400e)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 8px rgba(255, 193, 7, 0.25), 0 0 15px rgba(255, 152, 0, 0.15)',
+                      filter: 'drop-shadow(0 0 4px rgba(255, 193, 7, 0.2))',
+                    }}
+                  >
+                    ૨૭-૦૧-૨૦૨૬ થી ૦૧-૦૨-૨૦૨૬
+                  </div>
+                  
+                  {/* Decorative underline - Golden */}
+                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/4 h-1 bg-gradient-to-r from-transparent via-amber-400/30 to-transparent rounded-full"></div>
+                </div>
+                
+                {/* Location Text with enhanced styling */}
+                <div className="relative inline-block mt-2">
+                  {/* Background glow - Golden */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-amber-300/8 via-orange-300/8 to-amber-300/8 blur-lg rounded-lg -z-10 scale-105"></div>
+                  
+                  {/* Text - Golden */}
+                  <div 
+                    className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-amber-800 drop-shadow-xl px-3 py-1"
+                    style={{
+                      fontFamily: "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
+                      textShadow: '1px 1px 3px rgba(0, 0, 0, 0.25), 0 0 8px rgba(255, 193, 7, 0.2), 0 0 12px rgba(255, 152, 0, 0.1)',
+                      filter: 'drop-shadow(0 0 3px rgba(255, 193, 7, 0.15))',
+                    }}
+                  >
+                    મહાવીરનગર-હિંમતનગર-ગુજરાત
+                  </div>
+                </div>
+              </div>
+              
+            </div>
           </div>
         </div>
       </div>
@@ -415,6 +492,33 @@ const AnimatedBanner = () => {
             transform: translateY(-30px) translateX(5px);
             opacity: 0.9;
           }
+        }
+        @keyframes shimmer {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+        @keyframes shine {
+          0% {
+            transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            opacity: 0;
+          }
+          50% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateX(100%) translateY(100%) rotate(45deg);
+            opacity: 0;
+          }
+        }
+        .animate-shimmer {
+          animation: shimmer 3s infinite;
+        }
+        .animate-shine {
+          animation: shine 3s infinite;
         }
       `}</style>
     </section>

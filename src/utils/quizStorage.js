@@ -1,8 +1,12 @@
 /**
  * Quiz Storage Utilities
- * Manages user progress, points, streaks, and badges using localStorage
+ * Manages user progress, points, streaks, and badges
+ * Uses Firebase Firestore with localStorage fallback
  */
 
+import { saveUserProgress as saveProgressToFirebase, getUserProgress as getProgressFromFirebase } from './firebaseStorage';
+
+// Get or create user ID (stored in localStorage for consistency)
 export const getOrCreateUserId = () => {
   if (typeof window === 'undefined') return null;
   
@@ -29,42 +33,59 @@ export const getDefaultProgress = (userId) => {
   };
 };
 
-export const getUserProgress = () => {
+export const getUserProgress = async () => {
   if (typeof window === 'undefined') return null;
   
   const userId = getOrCreateUserId();
   if (!userId) return null;
   
-  const key = `quiz_progress_${userId}`;
-  const stored = localStorage.getItem(key);
+  // Try Firebase first, then localStorage fallback
+  let progress = await getProgressFromFirebase(userId);
   
-  if (stored) {
-    return JSON.parse(stored);
+  if (!progress) {
+    // Check localStorage as fallback
+    const key = `quiz_progress_${userId}`;
+    const stored = localStorage.getItem(key);
+    if (stored) {
+      progress = JSON.parse(stored);
+      // Sync to Firebase if available
+      if (progress) {
+        await saveUserProgress(progress);
+      }
+    }
   }
   
-  const defaultProgress = getDefaultProgress(userId);
-  saveUserProgress(defaultProgress);
-  return defaultProgress;
+  if (!progress) {
+    // Create default progress
+    progress = getDefaultProgress(userId);
+    await saveUserProgress(progress);
+  }
+  
+  return progress;
 };
 
-export const saveUserProgress = (progress) => {
+export const saveUserProgress = async (progress) => {
   if (typeof window === 'undefined' || !progress) return;
   
-  progress.lastActive = new Date().toISOString();
+  // Save to Firebase (with localStorage fallback)
+  await saveProgressToFirebase(progress);
+  
+  // Also save to localStorage as backup
   const key = `quiz_progress_${progress.userId}`;
+  progress.lastActive = new Date().toISOString();
   localStorage.setItem(key, JSON.stringify(progress));
 };
 
-export const updateUserDisplayName = (displayName) => {
-  const progress = getUserProgress();
+export const updateUserDisplayName = async (displayName) => {
+  const progress = await getUserProgress();
   if (progress) {
     progress.displayName = displayName;
-    saveUserProgress(progress);
+    await saveUserProgress(progress);
   }
 };
 
-export const submitAnswer = (day, questionId, isCorrect, points, selectedIndex = null) => {
-  const progress = getUserProgress();
+export const submitAnswer = async (day, questionId, isCorrect, points, selectedIndex = null) => {
+  const progress = await getUserProgress();
   if (!progress) return null;
   
   const answerKey = `day-${day}-q-${questionId}`;
@@ -87,12 +108,12 @@ export const submitAnswer = (day, questionId, isCorrect, points, selectedIndex =
     progress.totalPoints += points;
   }
   
-  saveUserProgress(progress);
+  await saveUserProgress(progress);
   return progress;
 };
 
-export const checkDayCompletion = (day, totalQuestions) => {
-  const progress = getUserProgress();
+export const checkDayCompletion = async (day, totalQuestions) => {
+  const progress = await getUserProgress();
   if (!progress) return false;
   
   // Check if all questions for this day are answered
@@ -107,15 +128,15 @@ export const checkDayCompletion = (day, totalQuestions) => {
   return dayAnswers.length === totalQuestions;
 };
 
-export const markDayCompleted = (day) => {
-  const progress = getUserProgress();
+export const markDayCompleted = async (day) => {
+  const progress = await getUserProgress();
   if (!progress) return;
   
   if (!progress.completedDays.includes(day)) {
     progress.completedDays.push(day);
     updateStreak(progress);
     checkBadges(progress);
-    saveUserProgress(progress);
+    await saveUserProgress(progress);
   }
 };
 

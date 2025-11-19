@@ -61,54 +61,30 @@ export default function Home() {
 
         {/* Hero Section - Removed as AnimatedBanner replaces it */}
 
-        {/* Registration and Quiz Buttons Section */}
+        {/* Registration and Quiz Buttons - Round Shape Side by Side */}
         <section className="py-6 sm:py-8 px-3 sm:px-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-6 sm:p-8">
-              <h3 className="text-xl sm:text-2xl font-semibold text-center mb-6 text-gray-800">
-                Quick Actions
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
-                {/* Registration Button */}
-                <a 
-                  href="https://webdada.sanghtech.com/c/PanchkalyanakPratishthaMahotsavHimmatnagar2025/11" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="group bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-medium py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] text-center border-2 border-orange-500 hover:border-orange-400 flex flex-col items-center justify-center min-h-[140px]"
-                >
-                  <span className="text-3xl group-hover:scale-110 transition-transform duration-300 mb-2">🏛️</span>
-                  <span className="text-sm sm:text-base font-semibold leading-tight mb-1">
-                    Click here for Pratistha and Awas Registration
-                  </span>
-                  <span className="text-xs opacity-90">Register Now →</span>
-                </a>
-                
-                {/* Quiz Button */}
-                <Link href="/quiz" className="group bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-medium py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] text-center border-2 border-purple-500 hover:border-purple-400 flex flex-col items-center justify-center min-h-[140px]">
-                  <span className="text-3xl group-hover:scale-110 transition-transform duration-300 mb-2">🎯</span>
-                  <span className="text-sm sm:text-base font-semibold leading-tight mb-1">
-                    Daily Quiz
-                  </span>
-                  <span className="text-xs opacity-90">Test Your Knowledge →</span>
-                </Link>
-              </div>
-            </div>
+          <div className="max-w-5xl mx-auto flex flex-row items-center justify-center gap-4 sm:gap-6">
+            {/* Awas/Registration Button - Round */}
+            <a 
+              href="https://webdada.sanghtech.com/c/PanchkalyanakPratishthaMahotsavHimmatnagar2025/11" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-semibold py-4 px-6 sm:py-5 sm:px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-center border-2 border-orange-500 hover:border-orange-400 flex items-center justify-center min-w-[140px] sm:min-w-[160px]"
+            >
+              <span className="text-base sm:text-lg">Awas/Registration</span>
+            </a>
+            
+            {/* Quiz Button - Round */}
+            <Link 
+              href="/quiz" 
+              className="group bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold py-4 px-6 sm:py-5 sm:px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-center border-2 border-purple-500 hover:border-purple-400 flex items-center justify-center min-w-[140px] sm:min-w-[160px]"
+            >
+              <span className="text-base sm:text-lg">Quiz</span>
+            </Link>
           </div>
         </section>
 
-        {/* Countdown Section */}
-        <section className="py-6 sm:py-8 px-3 sm:px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-4 sm:p-6 md:p-8">
-              <h3 className="text-lg sm:text-xl font-semibold text-center mb-4 sm:mb-6 text-gray-800">
-                Pratistha Mahotsav Countdown
-              </h3>
-              <CountdownTimer targetDate={targetDate} />
-            </div>
-          </div>
-        </section>
-
-        {/* Gallery Section */}
+        {/* Gallery Section - Panchakalyanak */}
         <section className="py-8 sm:py-12 px-3 sm:px-4 relative overflow-hidden">
           {/* Background decorative elements */}
           <div className="absolute inset-0 opacity-10">
@@ -119,40 +95,17 @@ export default function Home() {
           
           <div className="max-w-6xl mx-auto relative z-10">
             <ImageCarousel />
-            
-            {/* Enhanced call-to-action section */}
-            <div className="text-center mt-8 sm:mt-12">
-              <div className="bg-gradient-to-r from-white via-orange-50 to-yellow-50 rounded-2xl shadow-lg border border-orange-100 p-6 sm:p-8 backdrop-blur-sm">
-                <h3 
-                  className="text-lg sm:text-xl font-semibold mb-4 text-gray-800"
-                  style={{
-                    fontFamily: "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
-                    textShadow: "1px 1px 2px rgba(0,0,0,0.1)"
-                  }}
-                >
-                  Explore More Spiritual Content
-                </h3>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                  <Link href="/quiz">
-                    <span className="inline-block bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-                      🎯 Daily Quiz
-                    </span>
-                  </Link>
-                  <Link href="/videos">
-                    <span className="inline-block bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-                      📺 View Video Gallery
-                    </span>
-                  </Link>
-                  <Link href="/gallery">
-                    <span className="inline-block bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-                      🖼️ Photo Gallery
-                    </span>
-                  </Link>
-                </div>
-                <p className="text-sm text-gray-600 mt-4 italic">
-                  Immerse yourself in the divine journey of Panchkalyanka
-                </p>
-              </div>
+          </div>
+        </section>
+
+        {/* Countdown Section - Timer */}
+        <section className="py-6 sm:py-8 px-3 sm:px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-4 sm:p-6 md:p-8">
+              <h3 className="text-lg sm:text-xl font-semibold text-center mb-4 sm:mb-6 text-gray-800">
+                Pratistha Mahotsav Countdown
+              </h3>
+              <CountdownTimer targetDate={targetDate} />
             </div>
           </div>
         </section>
@@ -190,6 +143,50 @@ export default function Home() {
             </div>
           </div>
         </main>
+
+        {/* Explore More Spiritual Content Section - At Last */}
+        <section className="py-8 sm:py-12 px-3 sm:px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center">
+              <div className="bg-gradient-to-r from-white via-orange-50 to-yellow-50 rounded-2xl shadow-lg border border-orange-100 p-6 sm:p-8 backdrop-blur-sm">
+                <h3 
+                  className="text-lg sm:text-xl font-semibold mb-4 text-gray-800"
+                  style={{
+                    fontFamily: "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
+                    textShadow: "1px 1px 2px rgba(0,0,0,0.1)"
+                  }}
+                >
+                  Explore More Spiritual Content
+                </h3>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Link href="/quiz">
+                    <span className="inline-block bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                      🎯 Daily Quiz
+                    </span>
+                  </Link>
+                  <Link href="/admin/quiz">
+                    <span className="inline-block bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm">
+                      📊 Admin
+                    </span>
+                  </Link>
+                  <Link href="/videos">
+                    <span className="inline-block bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                      📺 View Video Gallery
+                    </span>
+                  </Link>
+                  <Link href="/gallery">
+                    <span className="inline-block bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                      🖼️ Photo Gallery
+                    </span>
+                  </Link>
+                </div>
+                <p className="text-sm text-gray-600 mt-4 italic">
+                  Immerse yourself in the divine journey of Panchkalyanka
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <footer className="bg-gradient-to-r from-orange-100 to-yellow-100 text-center py-12 text-orange-700 mt-12">
           <p

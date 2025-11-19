@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../../components/Header';
 import DailyQuiz from '../../components/DailyQuiz';
+import FirebaseStatus from '../../components/FirebaseStatus';
 
 export default function QuizPage() {
   const targetDate = new Date("2026-01-27T00:00:00");
@@ -66,6 +67,9 @@ export default function QuizPage() {
             </div>
           </section>
         </main>
+
+        {/* Firebase Status Indicator */}
+        <FirebaseStatus />
 
         <footer className="bg-gradient-to-r from-orange-100 to-yellow-100 text-center py-8 text-orange-700 mt-12">
           <p

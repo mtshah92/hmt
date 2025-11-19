@@ -7,11 +7,15 @@ const QuizProgress = () => {
   const [progress, setProgress] = useState(null);
 
   useEffect(() => {
-    const userProgress = getUserProgress();
-    setProgress(userProgress);
+    const loadProgress = async () => {
+      const userProgress = await getUserProgress();
+      setProgress(userProgress);
+    };
     
-    const interval = setInterval(() => {
-      const updated = getUserProgress();
+    loadProgress();
+    
+    const interval = setInterval(async () => {
+      const updated = await getUserProgress();
       setProgress(updated);
     }, 1000);
     

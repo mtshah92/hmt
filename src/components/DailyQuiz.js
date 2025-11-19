@@ -10,9 +10,11 @@ import {
   checkBadges
 } from '../utils/quizStorage';
 import { calculatePointsWithBonus } from '../utils/quizUtils';
+import { isUserRegistered } from '../utils/quizRegistration';
 import QuizCard from './QuizCard';
 import QuizProgress from './QuizProgress';
 import QuizCelebration from './QuizCelebration';
+import QuizRegistration from './QuizRegistration';
 
 const DailyQuiz = ({ targetDate }) => {
   const [currentDay, setCurrentDay] = useState(null);
@@ -24,22 +26,38 @@ const DailyQuiz = ({ targetDate }) => {
   const [dayCompleted, setDayCompleted] = useState(false);
   const [pointsEarned, setPointsEarned] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [showRegistration, setShowRegistration] = useState(false);
 
   useEffect(() => {
-    const dayNumber = getCurrentDayNumber(targetDate);
-    setCurrentDay(dayNumber);
-    const dayQuestions = getQuestionsForDay(dayNumber);
-    setQuestions(dayQuestions);
+    const initializeQuiz = async () => {
+      // Check if user is registered
+      const registered = await isUserRegistered();
+      setShowRegistration(!registered);
+      
+      const dayNumber = getCurrentDayNumber(targetDate);
+      setCurrentDay(dayNumber);
+      const dayQuestions = getQuestionsForDay(dayNumber);
+      setQuestions(dayQuestions);
+      
+      const userProgress = await getUserProgress();
+      setProgress(userProgress);
+      
+      if (userProgress && userProgress.completedDays.includes(dayNumber)) {
+        setDayCompleted(true);
+      }
+    };
     
-    const userProgress = getUserProgress();
-    setProgress(userProgress);
-    
-    if (userProgress && userProgress.completedDays.includes(dayNumber)) {
-      setDayCompleted(true);
-    }
+    initializeQuiz();
   }, [targetDate]);
+  
+  const handleRegistrationComplete = async () => {
+    setShowRegistration(false);
+    // Reload progress to get updated display name
+    const userProgress = await getUserProgress();
+    setProgress(userProgress);
+  };
 
-  const handleAnswer = (selectedIndex) => {
+  const handleAnswer = async (selectedIndex) => {
     if (!progress || !questions[currentQuestionIndex]) return;
 
     const question = questions[currentQuestionIndex];
@@ -53,7 +71,7 @@ const DailyQuiz = ({ targetDate }) => {
       setPointsEarned(pointsWithBonus);
     }
     
-    const updatedProgress = submitAnswer(
+    const updatedProgress = await submitAnswer(
       currentDay,
       question.id,
       isCorrect,
@@ -67,12 +85,12 @@ const DailyQuiz = ({ targetDate }) => {
     
     setProgress(updatedProgress);
     
-    setTimeout(() => {
-      const allAnswered = checkDayCompletion(currentDay, questions.length);
+    setTimeout(async () => {
+      const allAnswered = await checkDayCompletion(currentDay, questions.length);
       
       if (allAnswered && !dayCompleted) {
-        markDayCompleted(currentDay);
-        const finalProgress = getUserProgress();
+        await markDayCompleted(currentDay);
+        const finalProgress = await getUserProgress();
         setProgress(finalProgress);
         setDayCompleted(true);
         
@@ -138,6 +156,10 @@ const DailyQuiz = ({ targetDate }) => {
 
   return (
     <div className="max-w-4xl mx-auto px-4">
+      {/* Registration Modal */}
+      {showRegistration && (
+        <QuizRegistration onComplete={handleRegistrationComplete} />
+      )}
       {/* Engaging Header */}
       <div className="text-center mb-6 sm:mb-8 relative">
         <div className="inline-block relative">
@@ -206,14 +228,43 @@ const DailyQuiz = ({ targetDate }) => {
 
       {/* Day Completion Message */}
       {dayCompleted && currentQuestionIndex === questions.length - 1 && (
-        <div className="mt-6 sm:mt-8 bg-gradient-to-br from-green-50 via-emerald-50 to-green-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border-2 sm:border-4 border-green-300 text-center shadow-xl">
-          <div className="text-4xl sm:text-6xl mb-3 sm:mb-4">🎉</div>
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-800 mb-2 sm:mb-3">
-            Amazing Work! 🌟
+        <div className="mt-6 sm:mt-8 bg-gradient-to-br from-green-50 via-emerald-50 to-green-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border-2 sm:border-4 border-green-300 text-center shadow-xl animate-fade-in">
+          <div className="text-5xl sm:text-7xl mb-4 sm:mb-6 animate-bounce">🎉</div>
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-800 mb-3 sm:mb-4">
+            Congratulations! 🎊
           </h3>
-          <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-4 sm:mb-6 px-2">
-            You've completed all questions for today! You can review any question below. Come back tomorrow for new questions!
+          <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-4 sm:mb-6 px-2 font-semibold">
+            You've successfully completed today's quiz!
           </p>
+          
+          {/* Stats Summary */}
+          <div className="bg-white/80 rounded-xl p-4 sm:p-6 mb-4 sm:mb-6 border-2 border-green-200">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              <div className="text-center">
+                <div className="text-2xl sm:text-3xl font-bold text-orange-600 mb-1">
+                  {progress?.totalPoints || 0}
+                </div>
+                <div className="text-xs sm:text-sm text-gray-600 font-semibold">Total Points</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl sm:text-3xl font-bold text-red-600 mb-1">
+                  🔥 {progress?.currentStreak || 0}
+                </div>
+                <div className="text-xs sm:text-sm text-gray-600 font-semibold">Day Streak</div>
+              </div>
+              <div className="text-center col-span-2 sm:col-span-1">
+                <div className="text-2xl sm:text-3xl font-bold text-purple-600 mb-1">
+                  🏅 {(progress?.badges || []).length}
+                </div>
+                <div className="text-xs sm:text-sm text-gray-600 font-semibold">Badges</div>
+              </div>
+            </div>
+          </div>
+          
+          <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 px-2">
+            You can review any question below. Come back tomorrow for new questions! Keep up the great work! 💪
+          </p>
+          
           {newBadges.length > 0 && (
             <div className="mt-4 sm:mt-6">
               <p className="text-lg sm:text-xl font-bold text-purple-700 mb-3 sm:mb-4">🏆 New Badges Unlocked! 🏆</p>
@@ -221,7 +272,8 @@ const DailyQuiz = ({ targetDate }) => {
                 {newBadges.map((badge, index) => (
                   <div
                     key={index}
-                    className="bg-gradient-to-br from-yellow-200 to-orange-300 px-4 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl shadow-lg border-2 border-yellow-400 transform hover:scale-110 transition-all"
+                    className="bg-gradient-to-br from-yellow-200 to-orange-300 px-4 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl shadow-lg border-2 border-yellow-400 transform hover:scale-110 transition-all animate-badge-pop"
+                    style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <div className="text-3xl sm:text-4xl mb-1 sm:mb-2">{badge.icon}</div>
                     <div className="font-bold text-gray-800 text-sm sm:text-base">{badge.name}</div>
@@ -357,8 +409,41 @@ const DailyQuiz = ({ targetDate }) => {
           }
         }
         
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes badge-pop {
+          0% {
+            opacity: 0;
+            transform: scale(0.5) rotate(-10deg);
+          }
+          50% {
+            transform: scale(1.1) rotate(5deg);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+          }
+        }
+        
         .animate-shimmer {
           animation: shimmer 2s infinite;
+        }
+        
+        .animate-fade-in {
+          animation: fade-in 0.6s ease-out;
+        }
+        
+        .animate-badge-pop {
+          animation: badge-pop 0.6s ease-out forwards;
         }
       `}</style>
     </div>

@@ -14,6 +14,11 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Himatnagar Mumumukshu Mandal",
   author: "Meet Shah",
+  icons: {
+    icon: '/Pratistha_logo.png',
+    shortcut: '/Pratistha_logo.png',
+    apple: '/Pratistha_logo.png',
+  },
 };
 
 export default function RootLayout({ children }) {
