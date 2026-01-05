@@ -61,31 +61,48 @@ export default function Home() {
 
         {/* Hero Section - Removed as AnimatedBanner replaces it */}
 
+        {/* Countdown Section - Timer */}
+        <section className="py-6 sm:py-8 px-3 sm:px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-4 sm:p-6 md:p-8">
+              <h3 className="text-lg sm:text-xl font-semibold text-center mb-4 sm:mb-6 text-gray-800">
+                Pratistha Mahotsav Countdown
+              </h3>
+              <CountdownTimer targetDate={targetDate} />
+            </div>
+          </div>
+        </section>
+
         {/* Registration Button - Round Shape */}
         <section className="py-6 sm:py-8 px-3 sm:px-4">
           <div className="max-w-5xl mx-auto flex flex-col items-center justify-center gap-3 sm:gap-4">
-            {/* Registration Message */}
+            {/* Quiz Message */}
             <div className="text-center mb-3 sm:mb-4">
-              <p 
+              <p
                 className="text-base sm:text-lg md:text-xl font-bold text-orange-800 leading-relaxed"
                 style={{
-                  fontFamily: "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
-                  textShadow: "2px 2px 4px rgba(0,0,0,0.15), 0 0 8px rgba(255, 152, 0, 0.2)"
+                  fontFamily:
+                    "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
+                  textShadow:
+                    "2px 2px 4px rgba(0,0,0,0.15), 0 0 8px rgba(255, 152, 0, 0.2)",
                 }}
               >
-                📝 Pratistha Mahotsav Registration Started! Please Register Soon
+                Aaya Panchkalyanak Mahaan (Quiz)!
+              </p>
+              <p className="text-sm text-gray-600 mt-2">
+                Click below to enter quiz
               </p>
             </div>
-            
-            {/* Awas/Registration Button - Round */}
-            <a 
-              href="https://webdada.sanghtech.com/c/PanchkalyanakPratishthaMahotsavHimmatnagar2025/11" 
-              target="_blank" 
-              rel="noopener noreferrer"
+
+            {/* Quiz Button - Round */}
+            <Link
+              href="/quiz"
               className="group bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-semibold py-4 px-6 sm:py-5 sm:px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-center border-2 border-orange-500 hover:border-orange-400 flex items-center justify-center min-w-[140px] sm:min-w-[160px]"
             >
-              <span className="text-base sm:text-lg">Awas / Registration Link</span>
-            </a>
+              <span className="text-base sm:text-lg">
+                Aaya Panchkalyanak Mahaan
+              </span>
+            </Link>
           </div>
         </section>
 
@@ -97,21 +114,9 @@ export default function Home() {
             <div className="absolute bottom-10 right-10 w-40 h-40 bg-yellow-200 rounded-full blur-3xl"></div>
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-orange-100 rounded-full blur-3xl"></div>
           </div>
-          
+
           <div className="max-w-6xl mx-auto relative z-10">
             <ImageCarousel />
-          </div>
-        </section>
-
-        {/* Countdown Section - Timer */}
-        <section className="py-6 sm:py-8 px-3 sm:px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-4 sm:p-6 md:p-8">
-              <h3 className="text-lg sm:text-xl font-semibold text-center mb-4 sm:mb-6 text-gray-800">
-                Pratistha Mahotsav Countdown
-              </h3>
-              <CountdownTimer targetDate={targetDate} />
-            </div>
           </div>
         </section>
 
@@ -153,11 +158,12 @@ export default function Home() {
         <section className="py-8 sm:py-12 px-3 sm:px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center items-center">
-              <Link 
-                href="/videos" 
+              <Link
+                href="/videos"
                 className="text-orange-700 hover:text-orange-800 font-semibold text-lg sm:text-xl transition-all duration-300 hover:scale-105 group"
                 style={{
-                  fontFamily: "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif"
+                  fontFamily:
+                    "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
                 }}
               >
                 <span className="inline-block border-b-2 border-transparent hover:border-orange-500 transition-colors pb-1">
@@ -165,11 +171,12 @@ export default function Home() {
                 </span>
               </Link>
               <div className="hidden sm:block w-px h-6 bg-orange-300"></div>
-              <Link 
-                href="/gallery" 
+              <Link
+                href="/gallery"
                 className="text-orange-700 hover:text-orange-800 font-semibold text-lg sm:text-xl transition-all duration-300 hover:scale-105 group"
                 style={{
-                  fontFamily: "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif"
+                  fontFamily:
+                    "AMS Pankhuri Gujarati Calligraphy, Noto Serif Gujarati, serif",
                 }}
               >
                 <span className="inline-block border-b-2 border-transparent hover:border-orange-500 transition-colors pb-1">
@@ -191,7 +198,7 @@ export default function Home() {
               fontSize: "1.2rem",
             }}
           >
-            જય જિનેન્દ્ર 
+            જય જિનેન્દ્ર
           </p>
         </footer>
       </div>

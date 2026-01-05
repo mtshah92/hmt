@@ -319,16 +319,37 @@ export const QUIZ_QUESTIONS = [
 ];
 
 /**
- * Get questions for a specific day
+ * Get questions for a specific day based on current date
+ * All users will see the same questions on the same day
  */
 export const getQuestionsForDay = (day) => {
-  const dayData = QUIZ_QUESTIONS.find(d => d.day === day);
+  // Calculate which day of questions to show based on current date
+  const today = new Date();
+  const startDate = new Date('2025-01-01'); // Quiz start date
+  const daysDiff = Math.floor((today - startDate) / (1000 * 60 * 60 * 24)) + 1;
+  
+  // Use the calculated day or fallback to day 1
+  const questionDay = daysDiff > 0 && daysDiff <= QUIZ_QUESTIONS.length ? daysDiff : 1;
+  
+  const dayData = QUIZ_QUESTIONS.find(d => d.day === questionDay);
   if (dayData) {
     return dayData.questions;
   }
   
   // If day doesn't exist, return day 1 questions (fallback)
   return QUIZ_QUESTIONS[0].questions;
+};
+
+/**
+ * Get current quiz day based on today's date
+ * All users will be on the same day
+ */
+export const getCurrentQuizDay = () => {
+  const today = new Date();
+  const startDate = new Date('2025-01-01'); // Quiz start date
+  const daysDiff = Math.floor((today - startDate) / (1000 * 60 * 60 * 24)) + 1;
+  
+  return daysDiff > 0 && daysDiff <= QUIZ_QUESTIONS.length ? daysDiff : 1;
 };
 
 /**
